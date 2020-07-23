@@ -1,0 +1,10 @@
+{
+  "name": "[components-library]",
+  "icons": [
+  ],
+  "display": "standalone",
+  "short_name": "[components-library]",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
