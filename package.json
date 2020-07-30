@@ -7,7 +7,7 @@
     "build": "npm run generate:component-json && stencil build",
     "build:watch": "stencil build --watch",
     "build:es5": "npm run generate:component-json && stencil build --es5",
-    "start": "npm run generate:component-json && npm run storybook:watch",
+    "start": "npm run generate:component-json && npm run build --config ./stencil-readme.config.ts && npm run storybook:watch",
     "start:es5": "npm run generate:component-json && stencil build --dev --watch --serve --es5",
     "test": "stencil test --spec --e2e",
     "test:watch": "stencil test --spec --e2e --watchAll",

@@ -20,8 +20,8 @@ var inquirer = require('inquirer');
     logger: createNodeLogger({process}),
     sys: createNodeSys({process}),
   });
-  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.js`, `import readme from './readme.md'
-  export default {
+  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.ts`, `import readme from './readme.md'
+export default {
     title: '${component}',
     parameters: {
       notes: { readme },
