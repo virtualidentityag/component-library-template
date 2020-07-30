@@ -1,5 +1,5 @@
 {
-  "name": "union-investment-loader",
+  "name": "[components-library]-loader",
   "typings": "./index.d.ts",
   "module": "./index.mjs",
   "main": "./index.cjs.js",

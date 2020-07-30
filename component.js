@@ -20,11 +20,9 @@ var inquirer = require('inquirer');
     logger: createNodeLogger({process}),
     sys: createNodeSys({process}),
   });
-  await fs.outputFile(`${__dirname}/src/components/${component}/index.html`, `<${component}></${component}>`);
-  console.log(`  - src/components/${component}/index.html`);
   await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.js`, `export default {
     title: '${component}',
   };
-  export const Heading = () => '<${component}></${component}>';`);
+  export const empty = () => '<${component}></${component}>';`);
   console.log(`  - src/components/${component}/${component}.stories.js`);
 })()
