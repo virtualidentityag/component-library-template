@@ -20,9 +20,13 @@ var inquirer = require('inquirer');
     logger: createNodeLogger({process}),
     sys: createNodeSys({process}),
   });
-  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.js`, `export default {
+  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.js`, `import readme from './readme.md'
+  export default {
     title: '${component}',
+    parameters: {
+      notes: { readme },
+    }
   };
-  export const empty = () => '<${component}></${component}>';`);
-  console.log(`  - src/components/${component}/${component}.stories.js`);
+export const empty = () => '<${component}></${component}>';`);
+  console.log(`  - src/components/${component}/${component}.stories.ts`);
 })()
