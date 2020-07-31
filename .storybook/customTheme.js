@@ -1,8 +1,10 @@
 import { create } from '@storybook/theming/create';
 
 export default create({
-  base: 'dark',
-  appContentBg: 'white',
+  base: 'light',
+  appBg: "rgba(67,102,154,0.2)",
+  colorPrimary: 'rgba(67,102,154,0.6)',
+  colorSecondary: 'rgba(67,102,154,1)',
   brandTitle: 'Virtual Identity AG',
   brandUrl: 'https://www.virtual-identity.com/',
   brandImage:

@@ -1,9 +1,9 @@
 {
-  "name": "[components-library]",
+  "name": "component--library",
   "icons": [
   ],
   "display": "standalone",
-  "short_name": "[components-library]",
+  "short_name": "component--library",
   "start_url": "/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff"

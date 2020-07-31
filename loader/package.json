@@ -1,5 +1,5 @@
 {
-  "name": "[components-library]-loader",
+  "name": "component--library-loader",
   "typings": "./index.d.ts",
   "module": "./index.mjs",
   "main": "./index.cjs.js",

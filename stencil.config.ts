@@ -4,7 +4,7 @@ import { sass } from '@stencil/sass';
 // https://stenciljs.com/docs/config
 
 export const config: Config = {
-  namespace: '[components-library]',
+  namespace: 'component--library',
   hashFileNames: false,
   globalStyle: 'src/global/styles/styles.scss',
   globalScript: 'src/global/app.ts',

@@ -1,5 +1,5 @@
 module.exports = {
-  name: '[components-library]',
+  name: 'component--library',
   mode: 'file',
   out: 'dist/docs',
   exclude: [

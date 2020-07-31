@@ -24,7 +24,7 @@ var inquirer = require('inquirer');
 export default {
     title: '${component}',
     parameters: {
-      notes: { readme },
+      notes: { Docs: readme },
     }
   };
 export const empty = () => '<${component}></${component}>';`);
