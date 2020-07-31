@@ -1,0 +1,50 @@
+name: Push
+
+on: [push]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  AWS_REGION: 'eu-central-1'
+  AWS_S3_BUCKET: 'frontend-live-preview'
+
+jobs:
+  deploy:
+    name: Deploy to frontend.live Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm install
+      - run: npm run build
+
+      - name: Move zip file
+        run: zip -r dist.zip ./dist; mv dist.zip dist/
+        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/integration'
+
+      - name: Extract branch name
+        shell: bash
+        id: extract_branch_name
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
+      - name: Extract repository name
+        shell: bash
+        id: extract_repository_name
+        run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
+
+      - name: Deploy to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'dist'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
+
+      - name: Invalidate CDN cache
+        uses: awact/cloudfront-action@0.1.2
+        env:
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+          SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}

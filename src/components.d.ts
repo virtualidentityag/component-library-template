@@ -12,6 +12,8 @@ export namespace Components {
     interface ComponentDetail {
         "match": MatchResults;
     }
+    interface ExampleComponent {
+    }
     interface PreviewRoot {
     }
 }
@@ -28,6 +30,12 @@ declare global {
         prototype: HTMLComponentDetailElement;
         new (): HTMLComponentDetailElement;
     };
+    interface HTMLExampleComponentElement extends Components.ExampleComponent, HTMLStencilElement {
+    }
+    var HTMLExampleComponentElement: {
+        prototype: HTMLExampleComponentElement;
+        new (): HTMLExampleComponentElement;
+    };
     interface HTMLPreviewRootElement extends Components.PreviewRoot, HTMLStencilElement {
     }
     var HTMLPreviewRootElement: {
@@ -37,6 +45,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "component-detail": HTMLComponentDetailElement;
+        "example-component": HTMLExampleComponentElement;
         "preview-root": HTMLPreviewRootElement;
     }
 }
@@ -46,11 +55,14 @@ declare namespace LocalJSX {
     interface ComponentDetail {
         "match"?: MatchResults;
     }
+    interface ExampleComponent {
+    }
     interface PreviewRoot {
     }
     interface IntrinsicElements {
         "app-home": AppHome;
         "component-detail": ComponentDetail;
+        "example-component": ExampleComponent;
         "preview-root": PreviewRoot;
     }
 }
@@ -60,6 +72,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "component-detail": LocalJSX.ComponentDetail & JSXBase.HTMLAttributes<HTMLComponentDetailElement>;
+            "example-component": LocalJSX.ExampleComponent & JSXBase.HTMLAttributes<HTMLExampleComponentElement>;
             "preview-root": LocalJSX.PreviewRoot & JSXBase.HTMLAttributes<HTMLPreviewRootElement>;
         }
     }

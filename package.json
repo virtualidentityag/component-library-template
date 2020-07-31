@@ -21,7 +21,7 @@
     "docs": "typedoc src/components/ui-*",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "storybook:build": "build-storybook",
-    "storybook:watch": "concurrently --kill-others \"stencil build --watch\" \"start-storybook -p 6006 -s ./dist,./www\""
+    "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www"
   },
   "devDependencies": {
     "@babel/core": "7.10.5",
@@ -44,7 +44,6 @@
     "@types/jest": "24.9.1",
     "@types/puppeteer": "2.0.1",
     "babel-loader": "8.1.0",
-    "concurrently": "5.2.0",
     "cz-conventional-changelog": "3.2.0",
     "faker": "^4.1.0",
     "fs-extra": "9.0.1",
