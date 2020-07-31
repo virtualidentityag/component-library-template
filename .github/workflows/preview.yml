@@ -44,7 +44,7 @@ jobs:
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
-          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+          DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
           SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
