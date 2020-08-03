@@ -5,75 +5,33 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults } from "@stencil/router";
 export namespace Components {
-    interface AppHome {
-    }
-    interface ComponentDetail {
-        "match": MatchResults;
-    }
     interface ExampleComponent {
-    }
-    interface PreviewRoot {
     }
 }
 declare global {
-    interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
-    }
-    var HTMLAppHomeElement: {
-        prototype: HTMLAppHomeElement;
-        new (): HTMLAppHomeElement;
-    };
-    interface HTMLComponentDetailElement extends Components.ComponentDetail, HTMLStencilElement {
-    }
-    var HTMLComponentDetailElement: {
-        prototype: HTMLComponentDetailElement;
-        new (): HTMLComponentDetailElement;
-    };
     interface HTMLExampleComponentElement extends Components.ExampleComponent, HTMLStencilElement {
     }
     var HTMLExampleComponentElement: {
         prototype: HTMLExampleComponentElement;
         new (): HTMLExampleComponentElement;
     };
-    interface HTMLPreviewRootElement extends Components.PreviewRoot, HTMLStencilElement {
-    }
-    var HTMLPreviewRootElement: {
-        prototype: HTMLPreviewRootElement;
-        new (): HTMLPreviewRootElement;
-    };
     interface HTMLElementTagNameMap {
-        "app-home": HTMLAppHomeElement;
-        "component-detail": HTMLComponentDetailElement;
         "example-component": HTMLExampleComponentElement;
-        "preview-root": HTMLPreviewRootElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppHome {
-    }
-    interface ComponentDetail {
-        "match"?: MatchResults;
-    }
     interface ExampleComponent {
     }
-    interface PreviewRoot {
-    }
     interface IntrinsicElements {
-        "app-home": AppHome;
-        "component-detail": ComponentDetail;
         "example-component": ExampleComponent;
-        "preview-root": PreviewRoot;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
-            "component-detail": LocalJSX.ComponentDetail & JSXBase.HTMLAttributes<HTMLComponentDetailElement>;
             "example-component": LocalJSX.ExampleComponent & JSXBase.HTMLAttributes<HTMLExampleComponentElement>;
-            "preview-root": LocalJSX.PreviewRoot & JSXBase.HTMLAttributes<HTMLPreviewRootElement>;
         }
     }
 }

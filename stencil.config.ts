@@ -20,10 +20,7 @@ export const config: Config = {
     {
       type: 'www',
       baseUrl: 'https://myapp.local/',
-      copy: [
-        { src: 'components/**/*.html' },
-        { src: 'components/components.json' },
-      ],
+      copy: [{ src: 'components/**/*.html' }],
     },
   ],
   plugins: [sass()],
