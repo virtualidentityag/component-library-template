@@ -7,17 +7,17 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-storysource',
     '@storybook/addon-notes',
-],
- webpackFinal: async config => {
-  config.module.rules.push({
-  test: /\.(ts|tsx)$/,
-  use: [
-  {
-  loader: require.resolve('ts-loader'),
-  },
   ],
-  });
-  config.resolve.extensions.push('.ts', '.tsx');
-  return config;
- },
- };
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      use: [
+        {
+          loader: require.resolve('ts-loader'),
+        },
+      ],
+    });
+    config.resolve.extensions.push('.ts', '.tsx');
+    return config;
+  },
+};
