@@ -21,3 +21,5 @@ node_modules/
 $RECYCLE.BIN/
 
 .DS_Store
+.jest-test-results.json
+storybook-static
