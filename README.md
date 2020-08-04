@@ -7,12 +7,3 @@ When you created your own repository with this template please follow the follow
 #### 2. Create new components with `npm run generate` - Don't forget to use a dash in the component's name! There is already an example component in the components folder where we used Storybook Knobs and Faker, to give you an idea :)
 #### 3. Start the build and serve process with `npm start`.
 
-You can add your jest tests to the storybook preview by adding it to the respective stories.ts file: 
-`export default {
-  title: 'MyComponent',
-};
-
-export const empty = () => <div>Jest results in storybook</div>;
-empty.parameters = {
-  jest: ['MyComponent.test.js', 'MyOtherComponent.test.js'],
-};`

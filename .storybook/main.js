@@ -7,7 +7,6 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-storysource',
     '@storybook/addon-notes',
-    '@storybook/addon-jest',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({
