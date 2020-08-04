@@ -1,8 +1,8 @@
 {
   "name": "@virtualidentityag/component--library",
   "private": true,
-  "version": "4.1.0",
-  "description": "Stencil App Starter",
+  "version": "0.0.1",
+  "description": "VI Starter for a Stencil based Web Components Library",
   "scripts": {
     "init": "node init.js",
     "build": "stencil build && npm run storybook:build",
