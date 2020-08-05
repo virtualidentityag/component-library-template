@@ -6,7 +6,7 @@ import readme from './readme.md';
 export default {
   title: 'example-component',
   parameters: {
-    notes: { Docs: readme },
+    docs: { description: { component: readme } },
   },
 };
 export const empty = ({

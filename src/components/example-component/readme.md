@@ -1,10 +1,9 @@
 # example-component
 
 
-
 <!-- Auto Generated Below -->
 
 
 ----------------------------------------------
 
-*Built with [StencilJS](https://stenciljs.com/)*
+<style>.sbdocs-h1{display: none;}</style>

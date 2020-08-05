@@ -16,6 +16,7 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      footer: '<style>.sbdocs-h1{display: none;}</style>',
     },
   ],
   plugins: [sass()],
