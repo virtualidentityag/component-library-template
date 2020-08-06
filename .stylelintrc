@@ -1,9 +1,3 @@
 {
-  "extends": "stylelint-config-sass-guidelines",
-  "rules": {
-    "selector-class-pattern": ".",
-    "selector-max-compound-selectors": 5,
-    "max-nesting-depth": 5,
-    "selector-no-qualifying-type": null
-  }
+  "extends": "./node_modules/@biotope/quality-gate/config/style/recommended.js"
 }
