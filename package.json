@@ -10,7 +10,9 @@
     "init": "node init.js",
     "start": "stencil build --watch & npm run storybook",
     "build": "stencil build --es5 && npm run storybook:build",
-    "test": "stencil test --spec",
+    "storybook": "start-storybook -p 6006 -s ./dist",
+    "storybook:build": "build-storybook -o www",
+    "test": "stencil test --spec --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
     "test:watch": "stencil test --spec --watchAll",
     "generate": "npm run generate:component",
     "generate:component": "node component.js",
@@ -20,9 +22,7 @@
     "lint:code:fix": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
     "lint:style": "stylelint \"./**/*.css\" \"./**/*.scss\"",
     "lint:style:fix": "stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
-    "docs": "typedoc src/components/*",
-    "storybook": "start-storybook -p 6006 -s ./dist",
-    "storybook:build": "build-storybook -o www"
+    "docs": "typedoc src/components/*"
   },
   "devDependencies": {
     "@biotope/quality-gate": "github:biotope/biotope-quality-gate#task/repurpose-package",

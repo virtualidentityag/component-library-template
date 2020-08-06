@@ -1,11 +1,18 @@
-import { newE2EPage } from '@stencil/core/testing';
+import { newSpecPage } from '@stencil/core/testing';
+import { ExampleComponent } from '../example-component';
 
 describe('example-component', () => {
-  it('renders', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<example-component></example-component>');
+  let element: HTMLExampleComponentElement;
 
-    const element = await page.find('example-component');
-    expect(element).toHaveClass('hydrated');
+  beforeEach(async () => {
+    element = (await newSpecPage({
+      components: [ExampleComponent],
+      html: '<example-component></example-component>',
+    })).root as HTMLExampleComponentElement;
+  });
+
+  it('renders', async () => {
+    expect(element.shadowRoot).toBeTruthy();
+    expect(element.shadowRoot.childNodes.length).toBeTruthy();
   });
 });

@@ -1,6 +1,7 @@
 dist/
 !www/favicon.ico
 www/
+coverage/
 
 *~
 *.sw[mnpcod]
@@ -20,6 +21,8 @@ log.txt
 node_modules/
 $RECYCLE.BIN/
 
+.editorconfig
 .DS_Store
-.jest-test-results.json
-storybook-static
+Thumbs.db
+.env
+secrets.env
