@@ -6,7 +6,8 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class ExampleComponent {
-  render() {
+  // eslint-disable-next-line class-methods-use-this
+  public render(): JSX.Element {
     return (
       <div>
         <h1>A little component to show you cool stuff</h1>

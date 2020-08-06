@@ -10,7 +10,8 @@ inquirer
     },
   ])
   .then((answers) => {
-    console.log("Initializing...");
+    // eslint-disable-next-line no-console
+    console.log('Initializing...');
     replace({
       regex: 'component--library',
       replacement: answers.projectName,
@@ -18,8 +19,10 @@ inquirer
       recursive: true,
       silent: true,
     });
+    // eslint-disable-next-line no-console
     console.log('Initilization done');
   })
-  .catch((error) => {
+  .catch(() => {
+    // eslint-disable-next-line no-console
     console.log('Ooops...something went wrong?!');
   });

@@ -8,12 +8,15 @@ module.exports = {
     '@storybook/addon-storysource',
     '@storybook/addon-notes',
   ],
-  webpackFinal: async (config) => {
+  webpackFinal(config) {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       use: [
         {
           loader: require.resolve('ts-loader'),
+          options: {
+            configFile: 'tsconfig.storybook.json',
+          },
         },
       ],
     });

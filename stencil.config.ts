@@ -6,8 +6,8 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'component--library',
   hashFileNames: false,
-  globalStyle: 'src/global/styles/styles.scss',
   globalScript: 'src/global/app.ts',
+  globalStyle: 'src/global/app.scss',
   taskQueue: 'async',
   outputTargets: [
     {
@@ -16,11 +16,6 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
-    },
-    {
-      type: 'www',
-      baseUrl: 'https://myapp.local/',
-      copy: [{ src: 'components/**/*.html' }],
     },
   ],
   plugins: [sass()],
