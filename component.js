@@ -20,15 +20,20 @@ const inquirer = require('inquirer');
     logger: createNodeLogger({ process }),
     sys: createNodeSys({ process }),
   });
-  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.ts`, `// @ts-ignore: md file and not a module
-import readme from './readme.md'
+  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.ts`, `import readme from './readme.md';
+
+// eslint-disable-next-line import/no-default-export
 export default {
-    title: '${component}',
-    parameters: {
-      notes: { Docs: readme },
-    }
-  };
-export const empty = () => '<${component}></${component}>';`);
+  title: '${component}',
+  parameters: {
+    docs: { description: { component: readme } },
+  },
+};
+
+export const empty = (): string => \`
+  <${component}></${component}>
+\`;
+`);
   // eslint-disable-next-line no-console
   console.log(`  - src/components/${component}/${component}.stories.ts`);
 })();
