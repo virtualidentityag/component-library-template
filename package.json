@@ -8,7 +8,7 @@
     "build": "stencil build && npm run storybook:build",
     "build:watch": "stencil build --watch && npm run storybook:build",
     "build:es5": "stencil build --es5 && npm run storybook:build",
-    "start": "stencil build --config ./stencil-readme.config.ts && npm run storybook:watch",
+    "start": "node checkResults.js && stencil build --config ./stencil-readme.config.ts && npm run storybook:watch",
     "start:es5": "stencil build --dev --watch --serve --es5",
     "test": "stencil test --spec --e2e",
     "test:watch": "stencil test --spec --e2e --watchAll",
@@ -20,7 +20,7 @@
     "lint:ts": "prettier-eslint $PWD/'src/**/*.ts' --write",
     "docs": "typedoc src/components/ui-*",
     "storybook": "start-storybook -p 6006 -s ./dist",
-    "storybook:build": "build-storybook",
+    "storybook:build": "node checkResults.js && build-storybook",
     "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www"
   },
   "devDependencies": {
