@@ -1,4 +1,4 @@
-name: Push
+name: Release
 
 on: 
   push:
@@ -11,68 +11,67 @@ env:
   AWS_S3_BUCKET: 'frontend-live-preview'
 
 jobs:
-  pre_release:
-    name: Check if a release with the same version number already exists
+  release:
+    name: Create release
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Get current package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
-        id: package-version
-
-      - name: Get tag from package.json
-        run: echo "${{ steps.package-version.outputs.current-version }}"
-
-      - name: check if tag already exists
-        shell: bash
-        id: tag_existance
-        run: echo "##[set-output name=oldtag;]$(echo $(git tag -l "${{ steps.package-version.outputs.current-version }}"))"
-
-      - name: Validate tag reference from github
-        if: ${{ steps.tag_existance.outputs.oldtag != '' }}
-        run: exit 1
-  release: 
-    name: Create Release
-    runs-on: ubuntu-latest
-    needs: pre_release
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: npm install
-      - run: npm run build
-      - name: Archive Release
-        uses: thedoctor0/zip-release@v0.3.0
-        with:
-          filename: 'dist.zip'
-          path: 'dist/'
-      - run: mv dist.zip dist/
 
-      - name: Get current package version
+      - run: npm install
+
+      - name: Get old package version
         uses: martinbeentjes/npm-get-version-action@v1.0.0
-        id: package-version
+        id: package-version-old
+
+      - name: Build
+        if: steps.package-version-old.outputs.current-version != steps.package-version-new.outputs.current-version
+        run: npm run build
+
+      - name: Release with semantic-release
+        run: npm run release
+
+      - name: Get new package version
+        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        id: package-version-new
+     
 
       - name: Extract repository name
+        if: steps.package-version-old.outputs.current-version != steps.package-version-new.outputs.current-version
         shell: bash
-        id: extract_repository_name
+        id: extract-repository-name
         run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
-
-      - name: Deploy to frontend.live
+      
+      - name: Deploy www to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'www'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
+      
+      - name: Deploy dist to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'dist'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version.outputs.current-version}}'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}'
 
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: '0'
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.17.2
+      - name: Deploy storybook to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
-          CUSTOM_TAG: ${{ steps.package-version.outputs.current-version }}
-          RELEASE_BRANCHES: master
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'storybook-static'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/storybook'
+      
+      - name: Invalidate CDN cache
+        uses: awact/cloudfront-action@0.1.2
+        env:
+          DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
+          SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}

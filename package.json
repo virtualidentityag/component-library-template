@@ -20,12 +20,14 @@
     "docs": "typedoc src/components/ui-*",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "storybook:build": "build-storybook",
-    "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www"
+    "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www",
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@babel/core": "7.10.5",
     "@commitlint/cli": "9.1.2",
     "@commitlint/config-conventional": "9.1.1",
+    "@semantic-release/changelog": "5.0.1",
     "@semantic-release/git": "9.0.0",
     "@stencil/core": "1.17.2",
     "@stencil/router": "1.0.1",
@@ -78,11 +80,14 @@
   },
   "release": {
     "branches": [
-      "master-v4"
+      "master"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      ["@semantic-release/changelog", {
+        "changelogFile": "CHANGELOG.md"
+      }],
       [
         "@semantic-release/npm",
         {
