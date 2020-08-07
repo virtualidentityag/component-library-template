@@ -12,6 +12,6 @@ When you created your own repository with this template please follow the follow
 #### 3. Start the build and serve process with `npm start`.
 
 ## Features
-### Testing
+### Tests
 Run `test:generate-output` before running `npm start` to see the test results for the generated component tests in the preview.
 ### Screenshot Testing
