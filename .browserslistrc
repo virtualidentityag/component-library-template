@@ -1,0 +1,1 @@
+extends ./node_modules/@biotope/quality-gate/config/.browserslistrc.js

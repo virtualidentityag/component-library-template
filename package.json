@@ -18,10 +18,10 @@
     "generate:component": "node component.js",
     "lint": "npm run lint:code && npm run lint:style",
     "lint:fix": "npm run lint:code:fix && npm run lint:style:fix",
-    "lint:code": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\"",
-    "lint:code:fix": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
-    "lint:style": "stylelint \"./**/*.css\" \"./**/*.scss\"",
-    "lint:style:fix": "stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
+    "lint:code": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\"",
+    "lint:code:fix": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
+    "lint:style": "BROWSERSLIST_DANGEROUS_EXTEND=1 stylelint \"./**/*.css\" \"./**/*.scss\"",
+    "lint:style:fix": "BROWSERSLIST_DANGEROUS_EXTEND=1 stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
     "docs": "typedoc src/components/*"
   },
   "devDependencies": {
