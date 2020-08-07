@@ -14,7 +14,28 @@ inquirer
     replace({
       regex: 'component--library',
       replacement: answers.projectName,
-      paths: ['.'],
+      paths: ['./package-lock.json', './package.json', './stencil-readme.config.ts', './stencil.config.ts', './typedoc.js'],
+      recursive: false,
+      silent: true,
+    });
+    replace({
+      regex: 'component--library',
+      replacement: answers.projectName,
+      paths: ['./.storybook'],
+      recursive: true,
+      silent: true,
+    });
+    replace({
+      regex: 'component--library',
+      replacement: answers.projectName,
+      paths: ['./loader'],
+      recursive: true,
+      silent: true,
+    });
+    replace({
+      regex: 'component--library',
+      replacement: answers.projectName,
+      paths: ['./src'],
       recursive: true,
       silent: true,
     });
