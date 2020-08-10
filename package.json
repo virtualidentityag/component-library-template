@@ -21,7 +21,7 @@
     "lint:ts": "prettier-eslint $PWD/'src/**/*.ts' --write",
     "docs": "typedoc src/components/ui-*",
     "storybook": "start-storybook -p 6006 -s ./dist",
-    "storybook:build": "node checkResults.js && build-storybook",
+    "storybook:build": "npm run test:generate-output && build-storybook",
     "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www"
   },
   "devDependencies": {

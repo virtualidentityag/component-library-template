@@ -13,5 +13,5 @@ export const empty = ({
   content = text('This is a text knob', faker.name.findName()),
 } = {}) => `<example-component>${content}</example-component>`;
 empty.parameters = {
-  jest: { disable: true },
+  jest: ['example-component.spec.tsx'],
 };
