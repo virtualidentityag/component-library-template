@@ -12,8 +12,9 @@
     "build": "BROWSERSLIST_DANGEROUS_EXTEND=1 stencil build --es5 && npm run storybook:build",
     "storybook": "BROWSERSLIST_DANGEROUS_EXTEND=1 start-storybook -p 6006 -s ./dist",
     "storybook:build": "BROWSERSLIST_DANGEROUS_EXTEND=1 build-storybook -o www",
-    "test": "stencil test --spec --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
-    "test:watch": "stencil test --spec --watchAll",
+    "test": "stencil test --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
+    "test:watch": "stencil test --e2e --watchAll",
+    "test:screenshot": "stencil test --e2e --screenshot",
     "generate": "npm run generate:component",
     "generate:component": "node component.js",
     "lint": "npm run lint:code && npm run lint:style",
@@ -25,7 +26,7 @@
     "docs": "typedoc src/components/*"
   },
   "devDependencies": {
-    "@biotope/quality-gate": "2.0.0-rc.0",
+    "@biotope/quality-gate": "2.0.0-rc.3",
     "@semantic-release/git": "9.0.0",
     "@stencil/core": "1.17.3",
     "@stencil/router": "1.0.1",

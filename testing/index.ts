@@ -1,1 +1,2 @@
-// Add your testing helpers here
+/* istanbul ignore file */
+export * from './screenshot-stories';
