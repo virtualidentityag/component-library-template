@@ -2,6 +2,7 @@ dist/
 !www/favicon.ico
 www/
 coverage/
+.jest-test-results.json
 
 *~
 *.sw[mnpcod]
