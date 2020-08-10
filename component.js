@@ -33,6 +33,9 @@ export default {
 export const empty = (): string => \`
   <${component}></${component}>
 \`;
+empty.parameters = {
+  jest: ['${component}.spec.tsx'],
+};
 `);
   // eslint-disable-next-line no-console
   console.log(`  - src/components/${component}/${component}.stories.ts`);

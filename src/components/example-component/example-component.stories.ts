@@ -15,3 +15,7 @@ export const empty = ({ content }: { content?: string } = {
 }): string => `
   <example-component>${content}</example-component>
 `;
+
+empty.parameters = {
+  jest: ['example-component.spec.tsx'],
+};
