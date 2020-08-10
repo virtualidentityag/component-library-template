@@ -21,21 +21,7 @@ inquirer
     replace({
       regex: 'component--library',
       replacement: answers.projectName,
-      paths: ['./.storybook'],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: 'component--library',
-      replacement: answers.projectName,
-      paths: ['./loader'],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: 'component--library',
-      replacement: answers.projectName,
-      paths: ['./src'],
+      paths: ['./.storybook','./loader','./src'],
       recursive: true,
       silent: true,
     });
