@@ -22,12 +22,16 @@ var inquirer = require('inquirer');
   });
   await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.ts`, `// @ts-ignore: md file and not a module
 import readme from './readme.md'
+
 export default {
     title: '${component}',
     parameters: {
       docs: { description: {component: readme} },
     }
   };
-export const empty = () => '<${component}></${component}>';`);
+export const empty = () => '<${component}></${component}>';
+empty.parameters = {
+  jest: ['${component}.spec.tsx'],
+};`);
   console.log(`  - src/components/${component}/${component}.stories.ts`);
 })()
