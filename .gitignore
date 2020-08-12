@@ -22,7 +22,6 @@ log.txt
 node_modules/
 $RECYCLE.BIN/
 
-.editorconfig
 .DS_Store
 Thumbs.db
 .env
