@@ -3,71 +3,65 @@
   "private": true,
   "version": "0.0.1",
   "description": "VI Starter for a Stencil based Web Components Library",
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
     "init": "node init.js",
-    "build": "stencil build && npm run storybook:build",
-    "build:watch": "stencil build --watch && npm run storybook:build",
-    "build:es5": "stencil build --es5 && npm run storybook:build",
-    "start": "node checkResults.js && stencil build --config ./stencil-readme.config.ts && npm run storybook:watch",
-    "start:es5": "stencil build --dev --watch --serve --es5",
-    "test": "stencil test --spec --e2e",
+    "start": "node check-results && stencil build --watch & npm run storybook",
+    "build": "node check-results && stencil build --es5 && npm run storybook:build",
+    "storybook": "start-storybook -p 6006 -s ./dist",
+    "storybook:build": "npm run test:generate-output && build-storybook -o www",
+    "test": "stencil test --spec --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
     "test:watch": "stencil test --spec --e2e --watchAll",
+    "test:screenshot": "stencil test --spec --e2e --screenshot",
     "test:generate-output": "stencil test --spec --e2e --json --outputFile=.jest-test-results.json",
-    "test:screenshot": "stencil test --e2e --screenshot",
     "generate": "npm run generate:component",
     "generate:component": "node component.js",
-    "lint": "npm run lint:styles && npm run lint:ts",
-    "lint:styles": "stylelint 'src/components/**/*.scss' --fix",
-    "lint:ts": "prettier-eslint $PWD/'src/**/*.ts' --write",
-    "docs": "typedoc src/components/ui-*",
-    "storybook": "start-storybook -p 6006 -s ./dist",
-    "storybook:build": "npm run test:generate-output && build-storybook",
-    "storybook:watch": "stencil build --watch & start-storybook -p 6006 -s ./dist,./www"
+    "lint": "npm run lint:code && npm run lint:style",
+    "lint:fix": "npm run lint:code:fix && npm run lint:style:fix",
+    "lint:code": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\"",
+    "lint:code:fix": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
+    "lint:style": "stylelint \"./**/*.css\" \"./**/*.scss\"",
+    "lint:style:fix": "stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
+    "docs": "typedoc src/components/*"
   },
   "devDependencies": {
-    "@babel/core": "7.10.5",
-    "@commitlint/cli": "9.1.2",
-    "@commitlint/config-conventional": "9.1.1",
+    "@biotope/quality-gate": "2.0.0-rc.4",
     "@semantic-release/git": "9.0.0",
-    "@stencil/core": "1.17.2",
+    "@stencil/core": "1.17.3",
     "@stencil/router": "1.0.1",
     "@stencil/sass": "1.3.2",
-    "@storybook/addon-a11y": "6.0.0-rc.27",
-    "@storybook/addon-actions": "6.0.0-rc.27",
-    "@storybook/addon-docs": "6.0.0-rc.27",
-    "@storybook/addon-jest": "6.0.0-rc.27",
-    "@storybook/addon-knobs": "6.0.0-rc.27",
-    "@storybook/addon-storysource": "6.0.0-rc.27",
-    "@storybook/addon-viewport": "6.0.0-rc.27",
-    "@storybook/addons": "6.0.0-rc.27",
-    "@storybook/cli": "6.0.0-rc.27",
-    "@storybook/html": "6.0.0-rc.27",
-    "@storybook/theming": "6.0.0-rc.27",
-    "@types/jest": "24.9.1",
-    "@types/puppeteer": "2.0.1",
-    "babel-loader": "8.1.0",
+    "@storybook/addon-a11y": "6.0.0-rc.28",
+    "@storybook/addon-actions": "6.0.0-rc.28",
+    "@storybook/addon-docs": "6.0.0-rc.28",
+    "@storybook/addon-jest": "6.0.0-rc.28",
+    "@storybook/addon-knobs": "6.0.0-rc.28",
+    "@storybook/addon-storysource": "6.0.0-rc.28",
+    "@storybook/addon-viewport": "6.0.0-rc.28",
+    "@storybook/addons": "6.0.0-rc.28",
+    "@storybook/cli": "6.0.0-rc.28",
+    "@storybook/html": "6.0.0-rc.28",
+    "@storybook/theming": "6.0.0-rc.28",
+    "@types/faker": "4.1.12",
+    "@types/jest": "26.0.9",
+    "@types/puppeteer": "3.0.1",
     "cz-conventional-changelog": "3.2.0",
     "faker": "4.1.0",
     "fs-extra": "9.0.1",
-    "glob": "7.1.6",
     "husky": "4.2.5",
-    "inquirer": "7.3.2",
-    "jest": "24.9.0",
-    "jest-cli": "24.9.0",
+    "inquirer": "7.3.3",
+    "jest": "26.3.0",
+    "jest-cli": "26.3.0",
     "lint-staged": "10.2.11",
-    "prettier": "2.0.5",
-    "prettier-eslint-cli": "5.0.0",
-    "prompt-confirm": "2.0.4",
-    "puppeteer": "2.1.1",
+    "puppeteer": "5.2.1",
     "replace": "1.2.0",
     "semantic-release": "17.1.1",
-    "stylelint": "13.6.1",
-    "stylelint-config-sass-guidelines": "7.0.0",
-    "ts-loader": "8.0.1",
+    "ts-loader": "8.0.2",
     "typedoc": "0.17.8",
-    "typescript": "3.9.6",
-    "workbox-build": "4.3.1"
+    "typescript": "3.9.7"
   },
+  "dependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -81,7 +75,7 @@
   },
   "release": {
     "branches": [
-      "master-v4"
+      "master"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -103,6 +97,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {}
+  }
 }

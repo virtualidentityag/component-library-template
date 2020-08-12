@@ -4,7 +4,7 @@ module.exports = {
   out: 'dist/docs',
   exclude: [
     '**/node_modules/**',
-    '**/*.scss'
+    '**/*.scss',
   ],
   ignoreCompilerErrors: true,
   excludeProtected: true,
@@ -14,4 +14,4 @@ module.exports = {
   includeVersion: true,
   disableSources: true,
   hideGenerator: true,
-}
+};

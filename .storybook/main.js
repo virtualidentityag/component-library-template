@@ -7,14 +7,17 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
-    '@storybook/addon-jest'
+    '@storybook/addon-jest',
   ],
-  webpackFinal: async (config) => {
+  webpackFinal(config) {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       use: [
         {
           loader: require.resolve('ts-loader'),
+          options: {
+            configFile: 'tsconfig.storybook.json',
+          },
         },
       ],
     });

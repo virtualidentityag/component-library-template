@@ -6,15 +6,15 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'component--library',
   hashFileNames: false,
-  globalStyle: 'src/global/styles/styles.scss',
   globalScript: 'src/global/app.ts',
+  globalStyle: 'src/global/app.scss',
   taskQueue: 'async',
   testing: {
     // moduleFileExtensions: ['js', 'jsx', 'json', 'png', 'md', 'html', 'ts', 'tsx'],
     moduleNameMapper: {
       '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|md)$':
-        '<rootDir>/test/__mocks__/fileMock.js',
-      '\\.(css|sass)$': '<rootDir>/test/__mocks__/styleMock.js',
+        '<rootDir>/testing/mocks/file-mock.js',
+      '\\.(css|sass)$': '<rootDir>/testing/mocks/style-mock.js',
     },
   },
   outputTargets: [
@@ -25,11 +25,6 @@ export const config: Config = {
     {
       type: 'docs-readme',
       footer: '<style>.sbdocs-h1{display: none;}</style>',
-    },
-    {
-      type: 'www',
-      baseUrl: 'https://myapp.local/',
-      copy: [{ src: 'components/**/*.html' }],
     },
   ],
   plugins: [sass()],

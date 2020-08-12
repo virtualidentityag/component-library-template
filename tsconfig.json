@@ -1,29 +1,29 @@
 {
   "compilerOptions": {
+    "target": "es2017",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "experimentalDecorators": true,
+
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": false,
-    "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
-    "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "jsx": "react",
-    "jsxFactory": "h",
     "typeRoots": [
       "types",
       "node_modules/@types"
     ]
   },
   "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
+    "types/global.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "testing/**/*.ts"
   ]
 }

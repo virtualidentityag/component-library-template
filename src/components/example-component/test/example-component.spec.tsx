@@ -1,14 +1,20 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { createSpecComponent, getChild } from '../../../../testing';
 import { ExampleComponent } from '../example-component';
 
-describe('name-comp', () => {
+describe('example-component', () => {
   it('renders', async () => {
-    const page = await newSpecPage({
-      components: [ExampleComponent],
-      html: `<exampel-component></exampel-component>`,
-    });
-    expect(page.root).toEqualHtml(`
-      <exampel-component></exampel-component>
+    const content = getChild(await createSpecComponent('example-component', ExampleComponent));
+
+    expect(content).toEqualHtml(`
+      <div>
+        <h1>
+          A little component to show you cool stuff
+        </h1>
+        <p>
+          Here we use a Knob to play with this component in the preview:
+          <slot></slot>
+        </p>
+      </div>
     `);
   });
 });
