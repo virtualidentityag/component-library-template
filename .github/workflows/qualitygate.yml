@@ -25,8 +25,9 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           eslint: true
-          prettier: true
+          eslint_command_prefix: "npm run lint:code //"
           stylelint: true
+          stylelint_command_prefix: "npm run lint:style //"
 
   commitlint:
     runs-on: ubuntu-latest
