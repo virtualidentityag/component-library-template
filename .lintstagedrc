@@ -1,4 +1,5 @@
 {
-  "*.ts": ["prettier-eslint --write"],
-  "*.scss": ["stylelint --fix"]
+  "*.ts?(x)": ["npm run lint:code:fix"],
+  "*.js": ["npm run lint:code:fix"],
+  "*.?(s)css": ["npm run lint:style:fix"]
 }
