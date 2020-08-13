@@ -1,17 +1,15 @@
-name: Biotope Quality Gate
-
 on: pull_request
 
 jobs:
   run-linters:
-    name: Biotope Quality Gate
+    name: Run linters
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
