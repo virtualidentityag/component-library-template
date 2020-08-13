@@ -24,7 +24,6 @@
     "lint:code:fix": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
     "lint:style": "stylelint \"./**/*.css\" \"./**/*.scss\"",
     "lint:style:fix": "stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
-    "docs": "typedoc src/components/*",
     "release": "semantic-release"
   },
   "devDependencies": {
@@ -60,7 +59,6 @@
     "replace": "1.2.0",
     "semantic-release": "17.1.1",
     "ts-loader": "8.0.2",
-    "typedoc": "0.17.8",
     "typescript": "3.9.7"
   },
   "dependencies": {},
