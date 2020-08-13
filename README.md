@@ -1,6 +1,3 @@
-
-If you want to show the results of your component-tests in the storybook preview just run `npm run test:generate-output` and uncomment all comments below line 3 in the *.stories.ts files before running `npm start`.
-
 # Component library template
 ## Setup
 This template can be used to create a component library repository using stencilJS.
