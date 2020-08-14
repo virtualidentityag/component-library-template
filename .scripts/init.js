@@ -29,8 +29,10 @@ inquirer
     });
   })
   .then(() => {
-    fs.writeFile('./.scripts/init.js', `// eslint-disable-next-line no-console
-console.log('Already initialized!');`);
+    const packageJson=JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+    packageJson.scripts.init='echo \"Already initialized!\"';
+    fs.writeFileSync("./package.json", JSON.stringify(packageJson, undefined, 2));
+    fs.unlink("./.scripts/init.js");
     // eslint-disable-next-line no-console
     console.log("Initilization done");
   })
