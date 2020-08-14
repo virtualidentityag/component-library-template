@@ -30,7 +30,7 @@ inquirer
   })
   .then(() => {
     fs.writeFile('./.scripts/init.js', `// eslint-disable-next-line no-console
-      console.log('Already initialized!');`);
+console.log('Already initialized!');`);
     // eslint-disable-next-line no-console
     console.log("Initilization done");
   })
