@@ -3,5 +3,3 @@ runner:
     cmd: npm run lint:code
   stylelint:
     cmd: npm run lint:style
-  commitlint:
-    cmd: commitlint -E
