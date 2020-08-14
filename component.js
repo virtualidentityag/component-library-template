@@ -29,7 +29,7 @@ export default {
     docs: { description: { component: readme } },
     jest: [
       '${component}.spec.tsx',
-      '${component}.e2e.ts'
+      '${component}.e2e.ts',
     ],
   },
 };
