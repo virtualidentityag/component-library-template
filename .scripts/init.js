@@ -15,7 +15,7 @@ inquirer
     replace({
       regex: 'component--library',
       replacement: answers.projectName,
-      paths: ['./package-lock.json', './package.json', './stencil-readme.config.ts', './stencil.config.ts', './typedoc.js'],
+      paths: ['./package-lock.json', './package.json', './stencil.config.ts'],
       recursive: false,
       silent: true,
     });
@@ -29,7 +29,7 @@ inquirer
     // eslint-disable-next-line no-console
     console.log('Initilization done');
   })
-  .catch(() => {
+  .catch((err) => {
     // eslint-disable-next-line no-console
-    console.log('Ooops...something went wrong?!');
+    console.log('Ooops...something went wrong?! '+err);
   });

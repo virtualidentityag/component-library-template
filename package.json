@@ -7,9 +7,9 @@
     "node": ">=12"
   },
   "scripts": {
-    "init": "node init.js",
-    "start": "node check-results && stencil build --watch & npm run storybook",
-    "build": "node check-results && stencil build --es5 && npm run storybook:build",
+    "init": "node .scripts/init.js",
+    "start": "node .scripts/check-results && stencil build --watch & npm run storybook",
+    "build": "node .scripts/check-results && stencil build --es5 && npm run storybook:build",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "storybook:build": "npm run test:generate-output && build-storybook -o www",
     "test": "stencil test --spec --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
@@ -17,7 +17,7 @@
     "test:screenshot": "stencil test --spec --e2e --screenshot",
     "test:generate-output": "stencil test --spec --e2e --json --outputFile=.jest-test-results.json",
     "generate": "npm run generate:component",
-    "generate:component": "node component.js",
+    "generate:component": "node .scripts/component.js",
     "lint": "npm run lint:code && npm run lint:style",
     "lint:fix": "npm run lint:code:fix && npm run lint:style:fix",
     "lint:code": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\"",
