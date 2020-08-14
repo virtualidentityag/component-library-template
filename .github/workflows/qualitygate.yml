@@ -24,13 +24,9 @@ jobs:
         with:
             configFile: .commitlintrc.json
             firstParent: true
-            
+            failOnWarnings: false
 
-      - uses: aslafy-z/conventional-pr-title-action@master
-        with:
-          success-state: PR title follows the specification.
-          failure-state: PR title does not follow the specification.
-          context-name: conventional-pr-title
-          preset: conventional-changelog-angular@latest
+
+      - uses: amannn/action-semantic-pull-request@v1.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
