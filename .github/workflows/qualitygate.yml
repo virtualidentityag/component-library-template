@@ -19,3 +19,14 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -reporter=github-pr-check -runners=eslint,stylelint -fail-on-error
+      
+      - uses: wagoid/commitlint-github-action@v2
+
+      - uses: aslafy-z/conventional-pr-title-action@master
+        with:
+          success-state: PR title follows the specification.
+          failure-state: PR title does not follow the specification.
+          context-name: conventional-pr-title
+          preset: conventional-changelog-angular@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
