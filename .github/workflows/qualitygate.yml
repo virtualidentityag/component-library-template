@@ -5,7 +5,15 @@ jobs:
     name: Qualitygate
     runs-on: ubuntu-latest
     steps:
-      # ...
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install Node.js dependencies
+        run: npm install
+
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
