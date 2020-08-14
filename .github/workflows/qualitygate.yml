@@ -27,6 +27,6 @@ jobs:
             failOnWarnings: false
 
 
-      - uses: amannn/action-semantic-pull-request@v1.2
+      - uses: amannn/action-semantic-pull-request@v1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
