@@ -29,7 +29,8 @@ inquirer
     });
   })
   .then(() => {
-    fs.unlink("./.scripts/init.js");
+    fs.writeFile('./.scripts/init.js', `// eslint-disable-next-line no-console
+      console.log('Already initialized!');`);
     // eslint-disable-next-line no-console
     console.log("Initilization done");
   })
