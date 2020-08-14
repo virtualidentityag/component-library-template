@@ -21,6 +21,10 @@ jobs:
           reviewdog -reporter=github-pr-check -runners=eslint,stylelint
       
       - uses: wagoid/commitlint-github-action@v2
+        with:
+            configFile: .commitlintrc.json
+            firstParent: true
+            
 
       - uses: aslafy-z/conventional-pr-title-action@master
         with:
