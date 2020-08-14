@@ -9,7 +9,6 @@ env:
 
 jobs:
   deploy:
-    needs: qualitygate
     name: Deploy to frontend.live Preview
     runs-on: ubuntu-latest
     steps:
