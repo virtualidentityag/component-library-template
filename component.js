@@ -27,15 +27,16 @@ export default {
   title: '${component}',
   parameters: {
     docs: { description: { component: readme } },
+    jest: [
+      '${component}.spec.tsx',
+      '${component}.e2e.ts',
+    ],
   },
 };
 
 export const empty = (): string => \`
   <${component}></${component}>
 \`;
-empty.parameters = {
-  jest: ['${component}.spec.tsx'],
-};
 `);
   // eslint-disable-next-line no-console
   console.log(`  - src/components/${component}/${component}.stories.ts`);
