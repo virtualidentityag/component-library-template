@@ -16,7 +16,7 @@
     "test:watch": "stencil test --spec --e2e --watchAll",
     "test:screenshot": "stencil test --spec --e2e --screenshot",
     "test:generate-output": "stencil test --spec --e2e --json --outputFile=.jest-test-results.json",
-    "generate": "node .scripts/component.js",
+    "generate": "node .scripts/component",
     "lint": "npm run lint:code && npm run lint:style",
     "lint:fix": "npm run lint:code:fix && npm run lint:style:fix",
     "lint:code": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\"",
