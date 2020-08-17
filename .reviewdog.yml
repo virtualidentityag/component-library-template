@@ -3,3 +3,9 @@ runner:
     cmd: npm run lint:code
   stylelint:
     cmd: npm run lint:style
+  yamllint:
+    cmd:  yamllint
+  alex:
+    cmd: alex
+  misspell:
+    cmd: misspell
