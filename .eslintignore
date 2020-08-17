@@ -3,4 +3,5 @@
 /www
 /coverage
 !/.storybook
+!/.scripts
 /loader
