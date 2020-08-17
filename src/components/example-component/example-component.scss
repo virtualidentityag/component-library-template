@@ -1,5 +1,3 @@
 @import '../../style/import';
 
-:host {
-  display: block;
-}
+@include default-host;
