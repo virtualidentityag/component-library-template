@@ -20,7 +20,7 @@ const inquirer = require('inquirer');
     logger: createNodeLogger({ process }),
     sys: createNodeSys({ process }),
   });
-  await fs.outputFile(`${__dirname}/src/components/${component}/${component}.stories.ts`, `import readme from './readme.md';
+  await fs.outputFile(`./src/components/${component}/${component}.stories.ts`, `import readme from './readme.md';
 
 // eslint-disable-next-line import/no-default-export
 export default {
