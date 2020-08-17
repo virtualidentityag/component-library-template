@@ -8,10 +8,11 @@
   },
   "scripts": {
     "init": "node .scripts/init.js",
-    "start": "node .scripts/check-results && stencil build --watch & npm run storybook",
+    "start": "node .scripts/check-results && stencil build && npm run storybook:watch",
     "build": "node .scripts/check-results && stencil build --es5 && npm run storybook:build",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "storybook:build": "npm run test:generate-output && build-storybook -o www",
+    "storybook:watch": "stencil build --watch & npm run storybook",
     "test": "stencil test --spec --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
     "test:watch": "stencil test --spec --e2e --watchAll",
     "test:screenshot": "stencil test --spec --e2e --screenshot",
