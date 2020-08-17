@@ -9,7 +9,6 @@ addons.setConfig({
     colorSecondary: 'rgba(67,102,154,1)',
     brandTitle: 'Virtual Identity AG',
     brandUrl: 'https://www.virtual-identity.com/',
-    brandImage:
-      'https://www.virtual-identity.com/frontend/v0.20.7/images/vi-logo.svg',
+    brandImage: 'https://www.virtual-identity.com/frontend/v0.20.7/images/vi-logo.svg',
   }),
 });
