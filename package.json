@@ -24,6 +24,7 @@
     "lint:code:fix": "eslint \"./**/*.ts\" \"./**/*.tsx\" \"./**/*.js\" --fix",
     "lint:style": "stylelint \"./**/*.css\" \"./**/*.scss\"",
     "lint:style:fix": "stylelint \"./**/*.css\" \"./**/*.scss\" --fix",
+    "postinstall": "node .scripts/post-install && stylelint \"./src/style/vendor/**/*.scss\" --fix",
     "release": "semantic-release"
   },
   "devDependencies": {
