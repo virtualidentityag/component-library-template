@@ -5,20 +5,39 @@ jobs:
   qualitygate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: npm install
 
-      - uses: reviewdog/action-setup@v1
+      - name: stylelint
+        uses: reviewdog/action-stylelint@v1
         with:
-          reviewdog_version: latest
-      - name: Run reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog -reporter=github-pr-check -runners=eslint,stylelint,alex,misspell
+          github_token: ${{ github.token }}
+          reporter: github-pr-review
+      - name: eslint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-review
+      - name: yamllint
+        uses: reviewdog/action-yamllint@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-review
+      - name: alex
+        uses: reviewdog/action-alex@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-review
+          level: warning
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-review
+
 
       - uses: wagoid/commitlint-github-action@v2
         with:
