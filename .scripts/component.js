@@ -39,5 +39,5 @@ export const empty = (): string => \`
 \`;
 `);
   // eslint-disable-next-line no-console
-  console.log(`  - src/components/${component}/${component}.stories.ts`);
+  console.log(`  - ./src/components/${component}/${component}.stories.ts`);
 })();
