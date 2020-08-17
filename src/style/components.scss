@@ -1,4 +1,4 @@
-@mixin default-host {
+@mixin host {
   :host {
     display: block;
     @content;
