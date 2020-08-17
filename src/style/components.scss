@@ -1,5 +1,6 @@
 @mixin default-host {
   :host {
     display: block;
+    @content;
   }
 }
