@@ -41,6 +41,14 @@ jobs:
           SOURCE_DIR: 'dist'
           DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
 
+      - name: Deploy preview to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'www'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}/preview'
+
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
