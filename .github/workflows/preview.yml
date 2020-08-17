@@ -41,7 +41,7 @@ jobs:
           SOURCE_DIR: 'dist'
           DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
 
-      - name: Deploy to frontend.live
+      - name: Deploy preview to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
