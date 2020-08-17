@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import nodeSassPackageImporter from 'node-sass-package-importer';
 
 // https://stenciljs.com/docs/config
 
@@ -27,5 +28,7 @@ export const config: Config = {
       footer: '<style>.sbdocs-h1{display: none;}</style>',
     },
   ],
-  plugins: [sass()],
+  plugins: [
+    sass({ importer: nodeSassPackageImporter() }),
+  ],
 };
