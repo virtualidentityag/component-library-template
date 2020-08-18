@@ -8,13 +8,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/checkout@v2
-
-      - run: npm install
 
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
+          
+      - uses: actions/checkout@v2
+
+      - run: npm install
 
       - name: Run reviewdog
         env:
