@@ -20,15 +20,15 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: move zip file
+      - name: Move zip file
         run: zip -r dist.zip ./dist; mv dist.zip dist/
         if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/integration'
 
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch_name
-
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        
       - name: Extract repository name
         shell: bash
         id: extract_repository_name
@@ -53,7 +53,7 @@ jobs:
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
-          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+          DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
           SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
