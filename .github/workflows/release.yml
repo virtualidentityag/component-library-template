@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
   AWS_REGION: 'eu-central-1'
   AWS_S3_BUCKET: 'frontend-live-preview'
 
