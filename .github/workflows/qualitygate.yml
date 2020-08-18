@@ -1,16 +1,20 @@
 name: Qualitygate
-on: [pull_request]
+on: 
+  pull_request:
+
 
 jobs:
   qualitygate:
     name: Qualitygate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install
+      - uses: actions/checkout@v2
+      
+      - name: Run eslint, styelint
+        run: npm install
 
       - uses: reviewdog/action-setup@v1
         with:
