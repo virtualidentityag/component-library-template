@@ -21,4 +21,4 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run lint:code | reviewdog -f=eslint -diff="git diff" -reporter=github-pr-check
-          npm run lint:styles | reviewdog -f=stylelint -diff="git diff" -reporter=github-pr-check
+          npm run lint:style | reviewdog -f=stylelint -diff="git diff" -reporter=github-pr-check
