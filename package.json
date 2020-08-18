@@ -11,7 +11,7 @@
     "start": "node .scripts/check-results && stencil build && npm run storybook",
     "build": "node .scripts/check-results && stencil build --es5 && npm run storybook:build",
     "storybook": "stencil build --watch & start-storybook -p 6006 -s ./dist",
-    "storybook:build": "npm run test:generate-output && build-storybook -o www",
+    "storybook:build": "npm run test:generate-output && build-storybook",
     "test": "stencil test --spec --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
     "test:watch": "stencil test --spec --e2e --watchAll",
     "test:screenshot": "stencil test --spec --e2e --screenshot",
