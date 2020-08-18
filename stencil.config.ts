@@ -8,7 +8,6 @@ export const config: Config = {
   hashFileNames: false,
   globalScript: 'src/global/app.ts',
   globalStyle: 'src/global/app.scss',
-  taskQueue: 'async',
   testing: {
     // moduleFileExtensions: ['js', 'jsx', 'json', 'png', 'md', 'html', 'ts', 'tsx'],
     moduleNameMapper: {
@@ -27,5 +26,13 @@ export const config: Config = {
       footer: '<style>.sbdocs-h1{display: none;}</style>',
     },
   ],
+  buildEs5: 'prod',
+  // Opt-in for IE11, Edge 16-18 and Safari 10 Builds
+  extras: {
+    cssVarsShim: true,
+    dynamicImportShim: true,
+    safari10: true,
+    shadowDomShim: true,
+  },
   plugins: [sass()],
 };
