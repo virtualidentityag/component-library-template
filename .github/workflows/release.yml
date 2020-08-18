@@ -44,14 +44,6 @@ jobs:
         id: extract-repository-name
         run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
       
-      - name: Deploy www to frontend.live
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
-          SOURCE_DIR: 'www'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
-      
       - name: Deploy dist to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
@@ -66,7 +58,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'storybook-static'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/storybook'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
       
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
