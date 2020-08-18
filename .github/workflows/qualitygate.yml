@@ -5,10 +5,11 @@ jobs:
   qualitygate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - uses: actions/checkout@v2
+
       - run: npm install
 
       - uses: reviewdog/action-setup@v1
@@ -21,9 +22,3 @@ jobs:
         run: |
           npm run lint:code | reviewdog -f=eslint -diff="git diff" -reporter=github-pr-check
           npm run lint:styles | reviewdog -f=stylelint -diff="git diff" -reporter=github-pr-check
-
-      - uses: wagoid/commitlint-github-action@v2
-        with:
-            configFile: .commitlintrc.json
-            firstParent: true
-            failOnWarnings: false
