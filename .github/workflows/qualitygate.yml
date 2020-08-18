@@ -3,6 +3,7 @@ on: [pull_request]
 
 jobs:
   qualitygate:
+    name: Qualitygate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,28 +18,28 @@ jobs:
           
       - name: Run eslint, styelint
         env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ github.token }}
         run: |
-          reviewdog -reporter=github-pr-review -runners=eslint,stylelint
+          reviewdog -reporter=github-pr-check -runners=eslint,stylelint
 
       - name: yamllint
         uses: reviewdog/action-yamllint@v1
         with:
           github_token: ${{ github.token }}
-          reporter: github-pr-review
+          reporter: github-pr-check
 
       - name: alex
         uses: reviewdog/action-alex@v1
         with:
           github_token: ${{ github.token }}
-          reporter: github-pr-review
+          reporter: github-pr-check
           level: warning
 
       - name: shellcheck
         uses: reviewdog/action-shellcheck@v1
         with:
           github_token: ${{ github.token }}
-          reporter: github-pr-review
+          reporter: github-pr-check
 
 
       - uses: wagoid/commitlint-github-action@v2
