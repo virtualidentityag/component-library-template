@@ -28,7 +28,7 @@ jobs:
         shell: bash
         id: extract_branch_name
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        
+
       - name: Extract repository name
         shell: bash
         id: extract_repository_name
@@ -41,7 +41,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'dist'
           DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
-      
+
       - name: Deploy storybook to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
