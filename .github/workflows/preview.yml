@@ -19,14 +19,14 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Move zip file
+      - name: move zip file
         run: zip -r dist.zip ./dist; mv dist.zip dist/
         if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/integration'
 
       - name: Extract branch name
         shell: bash
-        id: extract_branch_name
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch_name
 
       - name: Extract repository name
         shell: bash
@@ -41,18 +41,10 @@ jobs:
           SOURCE_DIR: 'dist'
           DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
 
-      - name: Deploy preview to frontend.live
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
-          SOURCE_DIR: 'www'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}/preview'
-
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
-          DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
           SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
