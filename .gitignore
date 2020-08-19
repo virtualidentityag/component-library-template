@@ -1,8 +1,8 @@
 dist/
-!www/favicon.ico
-www/
+storybook-static/
 coverage/
 .jest-test-results.json
+loader/
 
 *~
 *.sw[mnpcod]
@@ -27,3 +27,5 @@ $RECYCLE.BIN/
 Thumbs.db
 .env
 secrets.env
+
+TODO
