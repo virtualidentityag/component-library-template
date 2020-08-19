@@ -3,4 +3,5 @@
 /storybook-static
 /coverage
 !/.storybook
+!/.scripts
 /loader
