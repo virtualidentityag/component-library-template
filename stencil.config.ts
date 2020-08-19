@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import nodeSassPackageImporter from 'node-sass-package-importer';
 
 // https://stenciljs.com/docs/config
 
@@ -34,5 +35,7 @@ export const config: Config = {
     safari10: true,
     shadowDomShim: true,
   },
-  plugins: [sass()],
+  plugins: [
+    sass({ importer: nodeSassPackageImporter() }),
+  ],
 };
