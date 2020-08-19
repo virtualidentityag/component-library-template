@@ -1,0 +1,6 @@
+@mixin host {
+  :host {
+    display: block;
+    @content;
+  }
+}
