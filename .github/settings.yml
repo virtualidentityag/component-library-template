@@ -1,0 +1,28 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+repository:
+  has_wiki: false
+  has_downloads: false
+  default_branch: develop
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: true
+
+branches:
+  - name: master
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+      required_status_checks:
+        strict: true
+      required_linear_history: true
+
+  - name: develop
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: true
+      required_status_checks:
+        strict: true
+      required_linear_history: true
