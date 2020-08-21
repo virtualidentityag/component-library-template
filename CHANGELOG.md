@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/virtualidentityag/component-library-template/compare/v1.1.0...v1.2.0) (2020-08-21)
+
+
+### Features
+
+* update storybook dependencies to auto patch ([#97](https://github.com/virtualidentityag/component-library-template/issues/97)) ([dffaa13](https://github.com/virtualidentityag/component-library-template/commit/dffaa13a26009ef46bcb02ee17da965c3bc43d9f))
+
 # [1.1.0](https://github.com/virtualidentityag/component-library-template/compare/v1.0.1...v1.1.0) (2020-08-21)
 
 
