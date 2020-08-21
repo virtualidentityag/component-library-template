@@ -7,6 +7,7 @@ const { prompt } = require('inquirer');
 const {
   outputFile, exists, move, readFile, writeFile,
 } = require('fs-extra');
+const beautify = require('js-beautify').js;
 
 const getStoriesContent = (name, hasSpec, hasE2E) => `${`
 import readme from './readme.md';
@@ -33,6 +34,7 @@ export const empty = (): string => \`
       message: 'What\'s the components name?',
     },
   ]);
+
   await run({
     args: [
       'generate',
@@ -58,6 +60,15 @@ export const empty = (): string => \`
       (await readFile(`./src/components/${name}/${name}.tsx`)).toString().replace(`${name}.css`, `${name}.scss`),
     ),
   ]);
+  
+  // Add component to commitizen scopes
+  const czConfig = require('../.cz-config.js');
+  if(!czConfig.scopes.find(scope => scope === name)) {
+    const newCzConfig = {};
+    Object.assign(newCzConfig, czConfig)
+    newCzConfig.scopes = [...newCzConfig.scopes, name];
+    await writeFile('./.cz-config.js', beautify(`module.exports = ${JSON.stringify(newCzConfig)}`));
+  }
 
   console.log(`  - ./src/components/${name}/${name}.stories.ts`);
 })();
