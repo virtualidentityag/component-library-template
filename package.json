@@ -1,6 +1,7 @@
 {
   "name": "@virtualidentityag/component--library",
-  "version": "1.1.0",
+  "private": true,
+  "version": "1.2.0",
   "description": "VI Starter for a Stencil based Web Components Library",
   "engines": {
     "node": ">=12.10.0"
