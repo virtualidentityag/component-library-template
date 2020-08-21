@@ -85,7 +85,8 @@
   },
   "release": {
     "branches": [
-      "master"
+      "master",
+      "feat/49-package-release"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
