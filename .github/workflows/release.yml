@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feat/49-package-release
 
 env:
   GITHUB_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
