@@ -28,4 +28,6 @@ Thumbs.db
 .env
 secrets.env
 
+src/components.d.ts
+
 TODO
