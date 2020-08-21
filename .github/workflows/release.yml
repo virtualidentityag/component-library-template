@@ -34,7 +34,7 @@ jobs:
       - name: Release with semantic-release
         run: npm run release
         env:
-          NPM_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
 
       - name: Get new package version
         uses: martinbeentjes/npm-get-version-action@v1.0.0
