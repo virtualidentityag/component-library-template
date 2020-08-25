@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/virtualidentityag/component-library-template/compare/v1.2.0...v1.3.0) (2020-08-25)
+
+
+### Features
+
+* add github action updates to dependabot ([#119](https://github.com/virtualidentityag/component-library-template/issues/119)) ([04552d4](https://github.com/virtualidentityag/component-library-template/commit/04552d4b07aa03108886ba31e0f4ab1e1531dae9))
+
 # [1.2.0](https://github.com/virtualidentityag/component-library-template/compare/v1.1.0...v1.2.0) (2020-08-21)
 
 
