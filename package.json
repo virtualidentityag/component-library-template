@@ -52,7 +52,7 @@
     "@types/jest": "26.0.10",
     "@types/puppeteer": "3.0.1",
     "cz-conventional-changelog": "3.2.1",
-    "faker": "4.1.0",
+    "faker": "5.0.0",
     "fs-extra": "9.0.1",
     "husky": "4.2.5",
     "inquirer": "7.3.3",
