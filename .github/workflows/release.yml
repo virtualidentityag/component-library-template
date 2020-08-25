@@ -23,7 +23,7 @@ jobs:
       - run: npm install
 
       - name: Get old package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-old
 
       - name: Build
@@ -34,7 +34,7 @@ jobs:
         run: npm run release
 
       - name: Get new package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-new
      
 
