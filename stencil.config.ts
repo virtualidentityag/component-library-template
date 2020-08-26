@@ -23,6 +23,9 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     {
+      type: 'dist-custom-elements-bundle',
+    },
+    {
       type: 'docs-readme',
       footer: '<style>.sbdocs-h1{display: none;}</style>',
     },
