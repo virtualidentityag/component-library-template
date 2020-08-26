@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2.3.2
+      - uses: actions/setup-node@v2.1.1
         with:
           node-version: 12
       - run: npm install
 
       - name: Get old package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-old
 
       - name: Build
@@ -36,7 +36,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
 
       - name: Get new package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-new
 
       - name: Extract repository name
