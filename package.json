@@ -99,7 +99,7 @@
         "@semantic-release/npm",
         {
           "npmPublish": true,
-          "pkgRoot": "dist/custom-elements/"
+          "pkgRoot": "dist/custom-elements"
         }
       ],
       "@semantic-release/github",
