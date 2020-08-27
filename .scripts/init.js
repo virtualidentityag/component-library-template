@@ -16,14 +16,14 @@ const replace = require('replace');
 
   console.log('Initializing...');
   replace({
-    regex: 'component--library',
+    regex: 'component-library-template',
     replacement: projectName,
     paths: ['./package-lock.json', './package.json', './stencil.config.ts'],
     recursive: false,
     silent: true,
   });
   replace({
-    regex: 'component--library',
+    regex: 'component-library-template',
     replacement: projectName,
     paths: ['./.storybook', './loader', './src', './testing'],
     recursive: true,

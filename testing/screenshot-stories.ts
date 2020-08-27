@@ -9,7 +9,7 @@ export const screenshotStories = (stories: any): void => Object
     it(`screenshot testing ${key}`, async () => {
       const page = await newE2EPage();
       await page.setContent(
-        `<link href="http://localhost:3333/build/component--library.css" rel="stylesheet" /><div class="st-test" style="display: inline-block; background-color: tomato;">${
+        `<link href="http://localhost:3333/build/component-library-template.css" rel="stylesheet" /><div class="st-test" style="display: inline-block; background-color: tomato;">${
           stories[key]()
         }</div>`,
       );
