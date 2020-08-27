@@ -8,6 +8,8 @@ const {
   outputFile, exists, move, readFile, writeFile,
 } = require('fs-extra');
 
+const componentRegex = RegExp(/^([a-z0-9_]+-)+[a-z0-9_]+$/);
+
 const getStoriesContent = (name, hasSpec, hasE2E) => `${`
 import readme from './readme.md';
 
@@ -31,6 +33,12 @@ export const empty = (): string => \`
     {
       name: 'name',
       message: 'What\'s the components name?',
+      validate: (input) => {
+        if (!componentRegex.test(input)) {
+          return 'Please give me a valid component name, according to the web component naming rules!';
+        }
+        return true;
+      },
     },
   ]);
   await run({
