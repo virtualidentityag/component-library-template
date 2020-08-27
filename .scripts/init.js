@@ -4,6 +4,7 @@
 const { prompt } = require('inquirer');
 const { readFile, writeFile, unlink } = require('fs-extra');
 const replace = require('replace');
+const packageNameRegex = require('package-name-regex');
 
 (async () => {
   const { projectName } = await prompt([
@@ -11,6 +12,13 @@ const replace = require('replace');
       type: 'string',
       name: 'projectName',
       message: "What's the project's name?",
+      validate: (input) => {
+        if (!packageNameRegex.test(input)) {
+          return 'Please give me a valid project name according to the npm package naming rules!';
+        }
+
+        return true;
+      },
     },
   ]);
 
@@ -25,7 +33,7 @@ const replace = require('replace');
   replace({
     regex: 'component-library-template',
     replacement: projectName,
-    paths: ['./.storybook', './loader', './src', './testing'],
+    paths: ['./.storybook', './src', './testing'],
     recursive: true,
     silent: true,
   });
