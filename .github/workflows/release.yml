@@ -32,11 +32,12 @@ jobs:
 
       - name: Release with semantic-release
         run: npm run release
+        env:
+          NPM_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
 
       - name: Get new package version
         uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-new
-     
 
       - name: Extract repository name
         if: steps.package-version-old.outputs.current-version != steps.package-version-new.outputs.current-version
