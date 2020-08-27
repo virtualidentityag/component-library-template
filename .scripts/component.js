@@ -35,7 +35,7 @@ export const empty = (): string => \`
       message: 'What\'s the components name?',
       validate: (input) => {
         if (!componentRegex.test(input)) {
-          return 'Please give me a valid component name, according to the web component naming rules!';
+          return 'Please give me a valid component name according to the web component naming rules!';
         }
         return true;
       },
