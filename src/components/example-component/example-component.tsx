@@ -3,7 +3,7 @@ import { Component, h } from '@stencil/core';
 @Component({
   tag: 'example-component',
   styleUrl: 'example-component.scss',
-  shadow: true
+  shadow: true,
 })
 export class ExampleComponent {
   // eslint-disable-next-line class-methods-use-this
