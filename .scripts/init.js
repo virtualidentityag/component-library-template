@@ -14,7 +14,7 @@ const packageNameRegex = require('package-name-regex');
       message: "What's the project's name?",
       validate: (input) => {
         if (!packageNameRegex.test(input)) {
-          return "Please give me a valid project name! (no non-URL-safe characters, no uppercase letters and doesn't start with '.' nor '_')";
+          return 'Please give me a valid project name according to the npm package naming rules!';
         }
 
         return true;
