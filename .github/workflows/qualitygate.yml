@@ -9,10 +9,12 @@ jobs:
     name: Qualitygate
     runs-on: ubuntu-latest
     steps:
-      - name: Install
+      - name: Node Setup
         uses: actions/setup-node@v1
         with:
           node-version: 12
+
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Run eslint, styelint
