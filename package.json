@@ -10,6 +10,8 @@
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
   "jsnext:main": "dist/esm/index.js",
+  "collection": "./dist/collection/collection-manifest.json",
+  "types": "./dist/types/components.d.ts",
   "scripts": {
     "init": "node .scripts/init.js",
     "start": "node .scripts/check-results && stencil build && npm run storybook",
