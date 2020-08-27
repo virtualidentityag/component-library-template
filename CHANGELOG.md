@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/virtualidentityag/component-library-template/compare/v1.4.0...v1.4.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* get rid of stencil warnings ([#156](https://github.com/virtualidentityag/component-library-template/issues/156)) ([b52d3ee](https://github.com/virtualidentityag/component-library-template/commit/b52d3ee4a1161f4af3590d611ce6f926a8bb1b2f))
+
 # [1.4.0](https://github.com/virtualidentityag/component-library-template/compare/v1.3.0...v1.4.0) (2020-08-27)
 
 
