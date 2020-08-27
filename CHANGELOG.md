@@ -1,3 +1,20 @@
+# [1.4.0](https://github.com/virtualidentityag/component-library-template/compare/v1.3.0...v1.4.0) (2020-08-27)
+
+
+### Bug Fixes
+
+* add gh token to action ([#152](https://github.com/virtualidentityag/component-library-template/issues/152)) ([c3ff06b](https://github.com/virtualidentityag/component-library-template/commit/c3ff06bfa077f02aef6f18fb27ab35d802e131ef))
+* enable ci for package release ([#147](https://github.com/virtualidentityag/component-library-template/issues/147)) ([a5f453f](https://github.com/virtualidentityag/component-library-template/commit/a5f453f88507bffe2e898dce277dc2d85b134093))
+* remove faulty parameter for release script ([#150](https://github.com/virtualidentityag/component-library-template/issues/150)) ([20e9b70](https://github.com/virtualidentityag/component-library-template/commit/20e9b7010546585baa52d889698e1a06c5dd3973))
+* set persist-credentials option to false in action ([#154](https://github.com/virtualidentityag/component-library-template/issues/154)) ([d9f5951](https://github.com/virtualidentityag/component-library-template/commit/d9f595182c50b8cb7dff3028164dba6db11ccc9a))
+
+
+### Features
+
+* 🎸 component name validation ([#146](https://github.com/virtualidentityag/component-library-template/issues/146)) ([e866009](https://github.com/virtualidentityag/component-library-template/commit/e8660094c286828e6e64f7a08165654c9ff4f1ea))
+* 🎸 init validation ([#135](https://github.com/virtualidentityag/component-library-template/issues/135)) ([d716993](https://github.com/virtualidentityag/component-library-template/commit/d71699369cd2c31a5ce61143278575956911ceea))
+* enable custom element bundle output for stenciljs ([#130](https://github.com/virtualidentityag/component-library-template/issues/130)) ([1067798](https://github.com/virtualidentityag/component-library-template/commit/106779890735a0c2b5fa816acff24d641e86ac99))
+
 # [1.3.0](https://github.com/virtualidentityag/component-library-template/compare/v1.2.0...v1.3.0) (2020-08-25)
 
 
