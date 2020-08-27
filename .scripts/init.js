@@ -4,6 +4,7 @@
 const { prompt } = require('inquirer');
 const { readFile, writeFile, unlink } = require('fs-extra');
 const replace = require('replace');
+const packageNameRegex = require('package-name-regex');
 
 (async () => {
   const { projectName } = await prompt([
@@ -11,21 +12,28 @@ const replace = require('replace');
       type: 'string',
       name: 'projectName',
       message: "What's the project's name?",
+      validate: (input) => {
+        if (!packageNameRegex.test(input)) {
+          return "Please give me a valid project name! (no non-URL-safe characters, no uppercase letters and doesn't start with '.' nor '_')";
+        }
+
+        return true;
+      },
     },
   ]);
 
   console.log('Initializing...');
   replace({
-    regex: 'component--library',
+    regex: 'component-library-template',
     replacement: projectName,
     paths: ['./package-lock.json', './package.json', './stencil.config.ts'],
     recursive: false,
     silent: true,
   });
   replace({
-    regex: 'component--library',
+    regex: 'component-library-template',
     replacement: projectName,
-    paths: ['./.storybook', './loader', './src', './testing'],
+    paths: ['./.storybook', './src', './testing'],
     recursive: true,
     silent: true,
   });
