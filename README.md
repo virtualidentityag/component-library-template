@@ -12,3 +12,6 @@ When you created your own repository with this template please follow the follow
 ### Tests
 Run `test:generate-output` before running `npm start` to see the test results for the generated component tests in the preview.
 ### Screenshot Testing
+
+### Configure your GitHub repository by code
+We provide some GitHub repository configuration standards, like recommended branch protection settings, with this template. You can find the configuration in `.github/settings.yml`. If you want those settings to be applied to your GitHub repository, install the GitHub Settings app on your repository (more info [here](https://github.com/apps/settings)). The app will read the `settings.yml` automatically and apply them to your repository. Afterwards, you can add or customize `settings.yml` according to your preferences.

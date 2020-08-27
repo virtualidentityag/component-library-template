@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
   AWS_REGION: 'eu-central-1'
   AWS_S3_BUCKET: 'frontend-live-preview'
 
@@ -14,15 +14,18 @@ jobs:
   release:
     name: Create release
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2.3.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v2.1.1
         with:
           node-version: 12
       - run: npm install
 
       - name: Get old package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-old
 
       - name: Build
@@ -31,25 +34,19 @@ jobs:
 
       - name: Release with semantic-release
         run: npm run release
+        env:
+          NPM_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
+          GH_TOKEN: ${{ secrets.VI_SUDO_BOT_ALLREPO_READ_WRITE_WEBHOOKS }}
 
       - name: Get new package version
-        uses: martinbeentjes/npm-get-version-action@v1.0.0
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: package-version-new
-     
 
       - name: Extract repository name
         if: steps.package-version-old.outputs.current-version != steps.package-version-new.outputs.current-version
         shell: bash
         id: extract-repository-name
         run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
-      
-      - name: Deploy www to frontend.live
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
-          SOURCE_DIR: 'www'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
       
       - name: Deploy dist to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
@@ -65,7 +62,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'storybook-static'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/storybook'
+          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
       
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2

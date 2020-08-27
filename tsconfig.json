@@ -22,6 +22,7 @@
   },
   "include": [
     "types/global.d.ts",
+    "src",
     "src/**/*.ts",
     "src/**/*.tsx",
     "testing/**/*.ts"
