@@ -17,7 +17,7 @@ Run `test:generate-output` before running `npm start` to see the test results fo
 We provide some GitHub repository configuration standards, like recommended branch protection settings, with this template. You can find the configuration in `.github/settings.yml`. If you want those settings to be applied to your GitHub repository, install the GitHub Settings app on your repository (more info [here](https://github.com/apps/settings)). The app will read the `settings.yml` automatically and apply them to your repository. Afterwards, you can add or customize `settings.yml` according to your preferences.
 
 ### Extend component generator
-If you want to generate more than the given files for each component, you can add an `component-config.js` on the project's base level and export an array of functions which take the component's name as value and return objects, analog to:
+If you want to generate more than the given files for each component, you can add an `component-config.js` on the project's base level and export an array of functions which take the component's name as value and return an array of objects, for example:
 ```
 exports.extenderArr = [
   (name) => [
