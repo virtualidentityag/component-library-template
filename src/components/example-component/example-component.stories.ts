@@ -17,5 +17,5 @@ export default {
 export const empty = ({
   content = text('This is a text knob', faker.name.findName()),
 }: { content?: string } = {}): string => `
-  <example-component>${content}</example-component>
+  <example-component example-prop="Propmagic">${content}</example-component>
 `;
