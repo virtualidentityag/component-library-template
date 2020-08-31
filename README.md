@@ -18,7 +18,9 @@ We provide some GitHub repository configuration standards, like recommended bran
 
 ### Extend component generator
 If you want to generate more than the given files for each component, you can add an `component-config.js` on the project's base level and export an array of functions which take the component's name as value and return objects, analog to:
-    `exports.extenderArr = [(name)=>{return [{
-        fileName: `${name}.ts`,
-        content: 'content'
-    }]}]`
+```
+exports.extenderArr = [(name)=>{return [{
+    fileName: `${name}.ts`,
+    content: 'content'
+}]}]
+```
