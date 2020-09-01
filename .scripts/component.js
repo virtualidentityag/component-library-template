@@ -5,8 +5,15 @@ const { run } = require('@stencil/core/cli');
 const { createNodeSys, createNodeLogger } = require('@stencil/core/sys/node');
 const { prompt } = require('inquirer');
 const {
-  outputFile, exists, move, readFile, writeFile,
+  outputFile,
+  exists,
+  move,
+  readFile,
+  writeFile,
+  existsSync,
 } = require('fs-extra');
+
+const { extenderArr } = (existsSync('./component-config.js') ? require('../component-config.js') : []);
 
 const componentRegex = RegExp(/^([a-z0-9_]+-)+[a-z0-9_]+$/);
 
@@ -27,6 +34,13 @@ export const empty = (): string => \`
   <${name}></${name}>
 \`;
 `.trim()}\n`;
+
+const extendGenerator = (componentName, arr) => {
+  const filesArr = arr.map((x) => x(componentName)).flat();
+  filesArr.forEach((fileConfig) => {
+    writeFile(`./src/components/${componentName}/${fileConfig.fileName}`, `${fileConfig.content}`);
+  });
+};
 
 (async () => {
   const { name } = await prompt([
@@ -68,4 +82,10 @@ export const empty = (): string => \`
   ]);
 
   console.log(`  - ./src/components/${name}/${name}.stories.ts`);
+
+  // Generate custom files
+  if (existsSync('./component-config.js')) {
+    await extendGenerator(name, extenderArr);
+    console.log('  - custom files');
+  }
 })();
