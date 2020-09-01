@@ -1,7 +1,6 @@
 {
-  "name": "@virtualidentityag/component--library",
-  "private": true,
-  "version": "1.0.1",
+  "name": "@virtualidentityag/component-library-template",
+  "version": "1.5.0",
   "description": "VI Starter for a Stencil based Web Components Library",
   "engines": {
     "node": ">=12.10.0"
@@ -11,12 +10,14 @@
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
   "jsnext:main": "dist/esm/index.js",
+  "collection": "./dist/collection/collection-manifest.json",
+  "types": "./dist/types/components.d.ts",
   "scripts": {
     "init": "node .scripts/init.js",
     "start": "node .scripts/check-results && stencil build && npm run storybook",
-    "build": "node .scripts/check-results && stencil build --es5 && npm run storybook:build",
+    "build": "node .scripts/check-results && stencil build && npm run storybook:build",
     "storybook": "stencil build --watch & start-storybook -p 6006 -s ./dist",
-    "storybook:build": "npm run test:generate-output && build-storybook",
+    "storybook:build": "npm run test:generate-output && build-storybook -s ./dist",
     "test": "stencil test --spec --e2e --coverage --coverageThreshold='{\"global\":{\"branches\":\"80\",\"functions\":\"80\",\"lines\":\"80\",\"statements\":\"80\"}}'",
     "test:watch": "stencil test --spec --e2e --watchAll",
     "test:screenshot": "stencil test --spec --e2e --screenshot",
@@ -34,39 +35,41 @@
     "@biotope/quality-gate": "2.0.0-rc.4",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/git": "9.0.0",
-    "@stencil/core": "^2.0.0-3",
+    "@stencil/core": "^2.0.0-6",
     "@stencil/router": "1.0.1",
     "@stencil/sass": "1.3.2",
-    "@storybook/addon-a11y": "6.0.12",
-    "@storybook/addon-actions": "6.0.12",
-    "@storybook/addon-docs": "6.0.10",
-    "@storybook/addon-jest": "6.0.10",
-    "@storybook/addon-knobs": "6.0.10",
-    "@storybook/addon-storysource": "6.0.12",
-    "@storybook/addon-viewport": "6.0.12",
-    "@storybook/addons": "6.0.10",
-    "@storybook/cli": "6.0.12",
-    "@storybook/html": "6.0.10",
-    "@storybook/theming": "6.0.10",
+    "@storybook/addon-a11y": "~6.0",
+    "@storybook/addon-actions": "~6.0",
+    "@storybook/addon-docs": "~6.0",
+    "@storybook/addon-jest": "~6.0",
+    "@storybook/addon-knobs": "~6.0",
+    "@storybook/addon-storysource": "~6.0",
+    "@storybook/addon-viewport": "~6.0",
+    "@storybook/addons": "~6.0",
+    "@storybook/cli": "~6.0",
+    "@storybook/html": "~6.0",
+    "@storybook/theming": "~6.0",
     "@types/faker": "4.1.12",
     "@types/jest": "26.0.10",
     "@types/puppeteer": "3.0.1",
+    "cz-conventional-changelog": "3.3.0",
     "cz-customizable": "^6.3.0",
-    "faker": "4.1.0",
+    "faker": "5.0.0",
     "fs-extra": "9.0.1",
     "husky": "4.2.5",
     "inquirer": "7.3.3",
-    "jest": "26.4.0",
-    "jest-cli": "26.4.0",
+    "jest": "26.4.2",
+    "jest-cli": "26.4.2",
     "js-beautify": "^1.13.0",
-    "lint-staged": "10.2.11",
+    "lint-staged": "10.2.13",
     "node-sass-package-importer": "5.3.2",
     "normalize.css": "8.0.1",
+    "package-name-regex": "^1.0.8",
     "puppeteer": "5.2.1",
     "replace": "1.2.0",
     "semantic-release": "17.1.1",
-    "ts-loader": "8.0.2",
-    "typescript": "3.9.7"
+    "ts-loader": "8.0.3",
+    "typescript": "4.0.2"
   },
   "dependencies": {},
   "config": {
@@ -82,6 +85,10 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "tag": "latest"
   },
   "release": {
     "branches": [
@@ -99,7 +106,7 @@
       [
         "@semantic-release/npm",
         {
-          "npmPublish": false
+          "npmPublish": true
         }
       ],
       "@semantic-release/github",

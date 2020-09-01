@@ -5,9 +5,18 @@ const { run } = require('@stencil/core/cli');
 const { createNodeSys, createNodeLogger } = require('@stencil/core/sys/node');
 const { prompt } = require('inquirer');
 const {
-  outputFile, exists, move, readFile, writeFile,
+  outputFile,
+  exists,
+  move,
+  readFile,
+  writeFile,
+  existsSync,
 } = require('fs-extra');
 const beautify = require('js-beautify').js;
+
+const { extenderArr } = (existsSync('./component-config.js') ? require('../component-config.js') : []);
+
+const componentRegex = RegExp(/^([a-z0-9_]+-)+[a-z0-9_]+$/);
 
 const getStoriesContent = (name, hasSpec, hasE2E) => `${`
 import readme from './readme.md';
@@ -27,11 +36,24 @@ export const empty = (): string => \`
 \`;
 `.trim()}\n`;
 
+const extendGenerator = (componentName, arr) => {
+  const filesArr = arr.map((x) => x(componentName)).flat();
+  filesArr.forEach((fileConfig) => {
+    writeFile(`./src/components/${componentName}/${fileConfig.fileName}`, `${fileConfig.content}`);
+  });
+};
+
 (async () => {
   const { name } = await prompt([
     {
       name: 'name',
       message: 'What\'s the components name?',
+      validate: (input) => {
+        if (!componentRegex.test(input)) {
+          return 'Please give me a valid component name according to the web component naming rules!';
+        }
+        return true;
+      },
     },
   ]);
 
@@ -71,4 +93,10 @@ export const empty = (): string => \`
   }
 
   console.log(`  - ./src/components/${name}/${name}.stories.ts`);
+
+  // Generate custom files
+  if (existsSync('./component-config.js')) {
+    await extendGenerator(name, extenderArr);
+    console.log('  - custom files');
+  }
 })();
