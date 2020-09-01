@@ -1,6 +1,7 @@
 /node_modules
 /dist
-/www
+/storybook-static
 /coverage
 !/.storybook
+!/.scripts
 /loader
