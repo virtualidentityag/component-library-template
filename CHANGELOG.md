@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/virtualidentityag/component-library-template/compare/v1.4.1...v1.5.0) (2020-09-01)
+
+
+### Features
+
+* 🎸 extend generator for custom files ([#167](https://github.com/virtualidentityag/component-library-template/issues/167)) ([a2ce32f](https://github.com/virtualidentityag/component-library-template/commit/a2ce32f83b3368134bb48b6140fb41d86ef4b7bc))
+
 ## [1.4.1](https://github.com/virtualidentityag/component-library-template/compare/v1.4.0...v1.4.1) (2020-08-27)
 
 
