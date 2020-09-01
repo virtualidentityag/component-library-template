@@ -12,6 +12,7 @@ const {
   writeFile,
   existsSync,
 } = require('fs-extra');
+const beautify = require('js-beautify').js;
 
 const { extenderArr } = (existsSync('./component-config.js') ? require('../component-config.js') : []);
 
@@ -55,6 +56,7 @@ const extendGenerator = (componentName, arr) => {
       },
     },
   ]);
+
   await run({
     args: [
       'generate',
@@ -80,6 +82,15 @@ const extendGenerator = (componentName, arr) => {
       (await readFile(`./src/components/${name}/${name}.tsx`)).toString().replace(`${name}.css`, `${name}.scss`),
     ),
   ]);
+  
+  // Add component to commitizen scopes
+  const czConfig = require('../.cz-config.js');
+  if(!czConfig.scopes.find(scope => scope === name)) {
+    const newCzConfig = {};
+    Object.assign(newCzConfig, czConfig)
+    newCzConfig.scopes = [...newCzConfig.scopes, name];
+    await writeFile('./.cz-config.js', beautify(`module.exports = ${JSON.stringify(newCzConfig)}`));
+  }
 
   console.log(`  - ./src/components/${name}/${name}.stories.ts`);
 
