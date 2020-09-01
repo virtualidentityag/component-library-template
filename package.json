@@ -54,7 +54,7 @@
     "@types/puppeteer": "3.0.1",
     "commitlint-config-cz": "0.13.2",
     "cz-customizable": "6.3.0",
-    "faker": "5.0.0",
+    "faker": "5.1.0",
     "fs-extra": "9.0.1",
     "husky": "4.2.5",
     "inquirer": "7.3.3",
