@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/virtualidentityag/component-library-template/compare/v1.5.0...v1.6.0) (2020-09-01)
+
+
+### Features
+
+* add scopes to commitizen component-wise ([#100](https://github.com/virtualidentityag/component-library-template/issues/100)) ([1520bab](https://github.com/virtualidentityag/component-library-template/commit/1520bab574cebdfe9313f8f42bccbe1a7d75db9c))
+
 # [1.5.0](https://github.com/virtualidentityag/component-library-template/compare/v1.4.1...v1.5.0) (2020-09-01)
 
 
