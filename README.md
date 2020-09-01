@@ -28,5 +28,5 @@ exports.extenderArr = [
     ]
 ];
 ```
-### Commitizen config
-When adding a new component with the generator, a new scope with the component's title will be automatically added to commitizen. If you want additional custom scopes, you can add them manually into the "scopes" property of .cz-config.js.
+### Commitizen / commitlint config
+When adding a new component with the generator, a new scope with the component's title will be automatically added to commitizen and commitlint. If you want additional custom scopes, you can add them manually into the "scopes" property of .cz-config.js.
