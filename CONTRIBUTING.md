@@ -8,12 +8,12 @@ To merge your development branch to the `master` branch, you need to create a Pu
 ### Naming
 When creating a new branch, please follow the naming convention: `[type]/[ticket]-[description]`.
 
-Example: `feature/ROCHE-1-header`, `refactor/ROCHE-123-headline` or `bugfix/ROCHE-42-breadcrumbs`.
+Example: `feature/XYZ-1-header`, `refactor/XYZ-123-headline` or `bugfix/XYZ-42-breadcrumbs`.
 
 ### Pull Requests
 Pull requests should be named according to the branch name: `[type]: [ticket] [description]`.
 
-Example: `Feature: ROCHE-1 header`, `Refactor: ROCHE-123 headline` or `Bugfix: ROCHE-42 breadcrumbs`.
+Example: `Feature: XYZ-1 header`, `Refactor: XYZ-123 headline` or `Bugfix: XYZ-42 breadcrumbs`.
 
 In order to be merged, a pull request needs:
 - build passing
@@ -32,7 +32,7 @@ The reviewer should not only ensure code quality but test quality. To do so, the
 - tests properly test a component's intended functionalities
 
 ## Components
-To create a new component, run `npm run generate` and add your component tag to it and when prompted for which features to include, de-select "E2E Test (.e2e.ts)" and continue.
+To create a new component, run `npm run generate` and add your component tag to it and when prompted for which features to include, select either e2e or spec tests and continue.
 
 Example: `npm run generate my-headline`.
 
@@ -99,9 +99,9 @@ We recommend the usage of the git-cz https://www.npmjs.com/package/git-cz
 Before every commit, a linter and style fix will run over your commits, so everything keeps our code guidelines.
 
 ## Auto Deployment
-Every branch will be automatically deployed on push to: `http://preview.roche-components-library-website.s3-website.eu-central-1.amazonaws.com/[branch]/`
+Every branch will be automatically deployed on push to: `http://preview.<your server>-components-library-website.s3-website.eu-central-1.amazonaws.com/[branch]/`
 
-Example: `http://preview.roche-components-library-website.s3-website.eu-central-1.amazonaws.com/feature/ROCHE-1-header/`
+Example: `http://preview.<your server>-components-library-website.s3-website.eu-central-1.amazonaws.com/feature/XYZ-1-header/`
 
 ## IDEs
 To take advantage of the linter's strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
