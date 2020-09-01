@@ -17,6 +17,8 @@ branches:
       required_status_checks:
         strict: true
       required_linear_history: true
+      enforce_admins: null
+      restrictions: null
 
   - name: develop
     protection:
@@ -26,3 +28,5 @@ branches:
       required_status_checks:
         strict: true
       required_linear_history: true
+      enforce_admins: null
+      restrictions: null
