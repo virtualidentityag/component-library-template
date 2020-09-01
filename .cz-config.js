@@ -16,7 +16,7 @@ module.exports = {
         "name": "🧹 refactor: A code change that neither fixes a bug nor adds a feature"
     }, {
         "value": "perf",
-        "name": "🏎 perf:     A code change that improves performance"
+        "name": "🚀 perf:     A code change that improves performance"
     }, {
         "value": "test",
         "name": "🔬‍ test:     Adding missing tests"
