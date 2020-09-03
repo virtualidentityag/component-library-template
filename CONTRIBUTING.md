@@ -100,7 +100,7 @@ The `integration` branch is used to install a set of features onto a testing env
 
 ### Feature Branches / Bugfix Branches
 
-This branches represents a new feature (a user story in agile projects). Create one of these branches for each story/feature or bugfix you want to develop to seperate unfinished work from the code base.
+These branches represent a new feature (a user story in agile projects). Create one of these branches for each story/feature or bugfix you want to develop to separate unfinished work from the code base.
 
 * branch from development
 * merge to development
