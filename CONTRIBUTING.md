@@ -1,16 +1,11 @@
 # Contributing Guide
 
-## Branches
-The `master` branch contains the most up-to-date code. Any development branches should be created from this branch.
-
-To merge your development branch to the `master` branch, you need to create a Pull Request and have it reviewed.
-
-### Naming
+## Branch naming
 When creating a new branch, please follow the naming convention: `[type]/[ticket]-[description]`.
 
 Example: `feature/XYZ-1-header`, `refactor/XYZ-123-headline` or `bugfix/XYZ-42-breadcrumbs`.
 
-### Pull Requests
+## Pull Requests
 Pull requests should be named according to the branch name: `[type]: [ticket] [description]`.
 
 Example: `Feature: XYZ-1 header`, `Refactor: XYZ-123 headline` or `Bugfix: XYZ-42 breadcrumbs`.
@@ -20,8 +15,9 @@ In order to be merged, a pull request needs:
 - linting passing
 - tests passing (which includes \>= 80% test coverage)
 - one review and approval
+- if project contains integration branch: Merge of your branch into integration BEFORE merge to develop.
 
-After a PR is merged, don't forget to delete the original branch.
+After a PR is merged to develop, don't forget to delete the original branch.
 
 > Important: When merging a PR to the `master` branch, please use a squash-merge strategy. However, in order to better diff potential conflicts, any other branches should use merge-commit strategy.
 
@@ -30,6 +26,90 @@ The reviewer should not only ensure code quality but test quality. To do so, the
 - code is as clean as possible
 - naming conventions are followed
 - tests properly test a component's intended functionalities
+
+What should not be commented:
+- Personal preference (i would write it that way), without clear arguments why the suggested way is better for the project and worth the time to rewrite it
+- code styles (should all be covered by linting, not reviewed and fixed manually)
+
+
+## Git Workflow
+
+The figure below shows what the branching model looks like. Arrows to the right (+->) indicate where to branch off from. Arrows to the left (<-+) show where to merge back into. The small dots (•) represent tags/releases.
+
+```ruby
+  +              +              +             +            +            +
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  •<----1.1.2----+---------------------------->            |            |
+  |  hotfix for  |              |             |            |            |
+  |legacy version|              |             |            |            |
+  |              |              •<-1.2.0------+            |            |
+  |              <--------------+             |            |            |
+  |              |              |             |            |            |
+  |              |              |             <-------------------------+
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              +-------1.1.1->• ------------>            |            |
+  |              |              |             |            |            |
+  |              <--------------+             |            <------------+
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              •<-1.1.0------+            |            |
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  |              |              |             +------------------------->
+  |              |              |             |            |            |
+  |              |              |             |            |            |
+  +              +              +             +            +            +
+release/*     hotfix/*       master        develop    integration   feature/*     
+                                                                    bugfix/*
+                                                                    refactor/*
+```
+## Branches
+
+### master
+
+Master is your main branch. Tags and Releases are created in that branch. It can go live anytime and tags here are used for rollbacks if necessary.
+
+### develop
+
+It contains all finished and approved feature branches. It can also be used to share finished stories that another story builds upon but that is not yet released.
+
+The `develop` branch contains the most up-to-date code. Any feature/bugfix branches should be created from this branch.
+To merge your feature/bugfix branch to the `develop` branch, you need to create a Pull Request and have it reviewed.
+
+If your project contains an `integration` branch, your feature/bugfix branch has to be merged in there and tested before merging it to develop.
+
+### hotfix/*
+
+These branches are used to merge urgent fixes that cannot wait for the next planned release.
+
+* branch from master
+* merge to `master` and `develop`
+* if it is a hotfix for a legacy release (master is always releases ahaead), merge to release/* (replace * with release version number) instead of master.
+
+### integration
+
+The `integration` branch is used to install a set of features onto a testing environment or staging server. Simply merge any branch you want to test or cherry pick commits into this branch. This branch can be used for automated integration tests. With every push on it, an automated build can deploy this branch to your testing server.
+
+* This branch is one-way. Only merge into, never branch from or merge integration into another branch
+
+### Feature Branches / Bugfix Branches
+
+This branches represents a new feature (a user story in agile projects). Create one of these branches for each story/feature or bugfix you want to develop to seperate unfinished work from the code base.
+
+* branch from development
+* merge to development
+* gets deleted after the feature/bugfix has been merged to master and released
+
+### "Release"
+
+* merge `develop` into `master` (or into release/* branch for hotfixes of legacy versions)
+
 
 ## Components
 To create a new component, run `npm run generate` and add your component tag to it and when prompted for which features to include, select either e2e or spec tests and continue.
