@@ -13,6 +13,7 @@ const {
   existsSync,
 } = require('fs-extra');
 const beautify = require('js-beautify').js;
+const czConfig = require('../.cz-config.js');
 
 const { extenderArr } = (existsSync('./component-config.js') ? require('../component-config.js') : []);
 
@@ -84,11 +85,13 @@ const extendGenerator = (componentName, arr) => {
   ]);
   
   // Add component to commitizen scopes
-  const czConfig = require('../.cz-config.js');
-  if(!czConfig.scopes.find(scope => scope === name)) {
+
+  const camelizedName = name.replace(/-./g, (x) => x.toUpperCase()[1]);
+
+  if (!czConfig.scopes.find((scope) => scope === camelizedName)) {
     const newCzConfig = {};
-    Object.assign(newCzConfig, czConfig)
-    newCzConfig.scopes = [...newCzConfig.scopes, name];
+    Object.assign(newCzConfig, czConfig);
+    newCzConfig.scopes = [...newCzConfig.scopes, camelizedName];
     await writeFile('./.cz-config.js', beautify(`module.exports = ${JSON.stringify(newCzConfig)}`));
   }
 
