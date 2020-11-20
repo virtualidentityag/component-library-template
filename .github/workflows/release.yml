@@ -29,7 +29,6 @@ jobs:
         id: package-version-old
 
       - name: Build
-        if: steps.package-version-old.outputs.current-version != steps.package-version-new.outputs.current-version
         run: npm run build
 
       - name: Release with semantic-release
