@@ -112,28 +112,11 @@ These branches represent a new feature (a user story in agile projects). Create 
 
 
 ## Components
-To create a new component, run `npm run generate` and add your component tag to it and when prompted for which features to include, select either e2e or spec tests and continue.
+To create a new component, run `npm run generate` and add your component tag to it and when prompted for which features to include, select e2e and/or spec tests and continue.
 
 Example: `npm run generate my-headline`.
 
-Afterwards, change the extension of the new style file to `scss`. Also remember to change its reference in the `tsx` file otherwise no style will be applied to the component.
-
-Example: `src/components/my-headline/my-headline.css` to `src/components/my-headline/my-headline.scss`.
-
-```typescript
-// src/components/my-headline/my-headline.tsx
-@Component({
-  styleUrl: 'my-headline.css',
-})
-// to
-@Component({
-  styleUrl: 'my-headline.scss',
-})
-```
-
-Finally, remove the `index.html` file included in your new component folder and create a new `.stories.ts` file to write your component previews.
-In this file, you should create a `Default` story, with every possible knob, to enable designers and developers to test your component in different scenarios.
-You should also add any expected behavior or edge-cases of your component to other stories.
+In the `.stories.ts` file, you should create a `Default` and additional stories, with senseful configurations and knobs, to enable designers and developers to test your component in different scenarios.
 
 Example:
 ```javascript
@@ -179,9 +162,9 @@ We recommend the usage of the git-cz https://www.npmjs.com/package/git-cz
 Before every commit, a linter and style fix will run over your commits, so everything keeps our code guidelines.
 
 ## Auto Deployment
-Every branch will be automatically deployed on push to: `http://preview.<your server>-components-library-website.s3-website.eu-central-1.amazonaws.com/[branch]/`
+Every branch will be automatically deployed on push to: `http://frontend.live/[branch]/`
 
-Example: `http://preview.<your server>-components-library-website.s3-website.eu-central-1.amazonaws.com/feature/XYZ-1-header/`
+Example: `http://frontend.live/feature/XYZ-1-header/`
 
 ## IDEs
 To take advantage of the linter's strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
