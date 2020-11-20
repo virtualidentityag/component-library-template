@@ -2,6 +2,8 @@
 ## Setup
 This template can be used to create a component library repository using stencilJS.
 
+A setup with this component library is recommended for components that are used by more than one project (now or in the future). Business logic should be kept out of this repository.
+
 When you created your own repository with this template please follow the following instructions and change this readme according to your project setup afterwards.
 
 #### 1. After installing the packages, use `npm run init` to initialize your project. You can customize the preview here: .storybook/manager.js
