@@ -23,7 +23,5 @@ module.exports = {
     }, {
         "value": "🛒 chore",
         "name": "🛒 chore:    Changes to the build process or auxiliary tools\n            and libraries such as documentation generation"
-    }],
-    "scopes": [],
-    "allowCustomScopes": true,
+    }]
 }
