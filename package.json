@@ -1,6 +1,6 @@
 {
   "name": "@virtualidentityag/component-library-template",
-  "version": "1.6.0",
+  "version": "1.0.0",
   "description": "VI Starter for a Stencil based Web Components Library",
   "engines": {
     "node": ">=12.10.0"
@@ -95,14 +95,26 @@
       "master"
     ],
     "plugins": [
-      ["@semantic-release/commit-analyzer", {
-        "preset": "angular",
-        "releaseRules": [
-          {"type": "feat*", "release": "minor"},
-          {"type": "fix*", "release": "patch"},
-          {"type": "perf*", "release": "patch"}
-        ]
-      }],
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "releaseRules": [
+            {
+              "type": "feat*",
+              "release": "minor"
+            },
+            {
+              "type": "fix*",
+              "release": "patch"
+            },
+            {
+              "type": "perf*",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
       "@semantic-release/release-notes-generator",
       [
         "@semantic-release/changelog",
