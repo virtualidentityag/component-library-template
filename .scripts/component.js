@@ -18,6 +18,7 @@ const { extenderArr } = (existsSync('./component-config.js') ? require('../compo
 const componentRegex = RegExp(/^([a-z0-9_]+-)+[a-z0-9_]+$/);
 
 const getStoriesContent = (name, hasSpec, hasE2E) => `${`
+import { jsxDecorator } from 'storybook-addon-jsx';
 import readme from './readme.md';
 
 // eslint-disable-next-line import/no-default-export
@@ -28,6 +29,7 @@ export default {
     jest: [${hasSpec ? `\n      '${name}.spec.tsx',` : ''}${hasE2E ? `\n      '${name}.e2e.ts',` : ''}
     ],
   },
+  decorators: [jsxDecorator],
 };
 
 export const empty = (): string => \`

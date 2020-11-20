@@ -1,5 +1,6 @@
 import { text } from '@storybook/addon-knobs';
 import faker from 'faker';
+import { jsxDecorator } from 'storybook-addon-jsx';
 import readme from './readme.md';
 
 // eslint-disable-next-line import/no-default-export
@@ -12,6 +13,7 @@ export default {
       'example-component.e2e.ts',
     ],
   },
+  decorators: [jsxDecorator],
 };
 
 export const empty = ({

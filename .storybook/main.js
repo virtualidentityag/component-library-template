@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-storysource',
     '@storybook/addon-docs',
     '@storybook/addon-jest',
+    'storybook-addon-jsx',
   ],
   webpackFinal(config) {
     config.module.rules.push({
