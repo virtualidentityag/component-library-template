@@ -162,7 +162,7 @@ We recommend the usage of the git-cz https://www.npmjs.com/package/git-cz
 Before every commit, a linter and style fix will run over your commits, so everything keeps our code guidelines.
 
 ## Auto Deployment
-Every branch will be automatically deployed on push to: `http://frontend.live/[branch]/`
+Every branch will be automatically deployed on push to: `http://frontend.live/[repositoryName]/[branch]/`
 
 Example: `http://frontend.live/feature/XYZ-1-header/`
 
