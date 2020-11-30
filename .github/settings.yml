@@ -28,36 +28,6 @@ repository:
 
   allow_rebase_merge: true
 
-labels:
-  - name: bug
-    color: CC0000
-    description: An issue with the system 🐛.
-
-  - name: feature
-    color: '#336699'
-    description: New functionality.
-
-  - name: first-timers-only
-    oldname: Help Wanted
-
-milestones:
-  - title: milestone-title
-    description: milestone-description
-    state: open
-
-collaborators:
-  - username: bkeepers
-    permission: push
-
-  - username: hubot
-    permission: pull
-
-teams:
-  - name: core
-    permission: admin
-  - name: docs
-    permission: push
-
 branches:
   - name: master
     protection:
