@@ -1,11 +1,17 @@
 # These settings are synced to GitHub by https://probot.github.io/apps/settings/
 
 repository:
+
   has_wiki: false
+
   has_downloads: false
+
   default_branch: develop
+
   allow_squash_merge: true
+
   allow_merge_commit: false
+  
   allow_rebase_merge: true
 
 branches:
