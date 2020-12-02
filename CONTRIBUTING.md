@@ -15,7 +15,7 @@ In order to be merged, a pull request needs:
 - linting passing
 - tests passing (which includes \>= 80% test coverage)
 - one review and approval
-- if project contains integration branch: Merge of your branch into integration BEFORE merge to develop.
+- if project contains staging branch: Merge of your branch into staging BEFORE merge to develop.
 
 After a PR is merged to develop, don't forget to delete the original branch.
 
@@ -65,7 +65,7 @@ The figure below shows what the branching model looks like. Arrows to the right 
   |              |              |             |            |            |
   |              |              |             |            |            |
   +              +              +             +            +            +
-release/*     hotfix/*       master        develop    integration   feature/*     
+release/*     hotfix/*       master        develop      staging     feature/*     
                                                                     bugfix/*
                                                                     refactor/*
 ```
@@ -82,7 +82,7 @@ It contains all finished and approved feature branches. It can also be used to s
 The `develop` branch contains the most up-to-date code. Any feature/bugfix branches should be created from this branch.
 To merge your feature/bugfix branch to the `develop` branch, you need to create a Pull Request and have it reviewed.
 
-If your project contains an `integration` branch, your feature/bugfix branch has to be merged in there and tested before merging it to develop.
+If your project contains an `staging` branch, your feature/bugfix branch has to be merged in there and tested before merging it to develop.
 
 ### hotfix/*
 
@@ -92,11 +92,11 @@ These branches are used to merge urgent fixes that cannot wait for the next plan
 * merge to `master` and `develop`
 * if it is a hotfix for a legacy release (master is always releases ahaead), merge to release/* (replace * with release version number) instead of master.
 
-### integration
+### staging
 
-The `integration` branch is used to install a set of features onto a testing environment or staging server. Simply merge any branch you want to test or cherry pick commits into this branch. This branch can be used for automated integration tests. With every push on it, an automated build can deploy this branch to your testing server.
+The `staging` branch is used to install a set of features onto a testing environment or staging server. Simply merge any branch you want to test or cherry pick commits into this branch. This branch can be used for automated staging tests. With every push on it, an automated build can deploy this branch to your testing server.
 
-* This branch is one-way. Only merge into, never branch from or merge integration into another branch
+* This branch is one-way. Only merge into, never branch from or merge staging into another branch
 
 ### Feature Branches / Bugfix Branches
 
