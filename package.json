@@ -51,7 +51,7 @@
     "@storybook/html": "~6.1",
     "@storybook/theming": "~6.1",
     "@types/faker": "5.1.4",
-    "@types/jest": "26.0.15",
+    "@types/jest": "26.0.16",
     "@types/puppeteer": "5.4.0",
     "commitlint-config-cz": "0.13.2",
     "cz-customizable": "6.3.0",
