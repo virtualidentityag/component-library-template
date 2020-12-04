@@ -1,4 +1,4 @@
-name: Push
+name: 🚚 Deploy to frontend.live
 
 on: [push]
 
@@ -26,13 +26,7 @@ jobs:
 
       - name: Extract branch name
         shell: bash
-        id: extract_branch_name
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-
-      - name: Extract repository name
-        shell: bash
-        id: extract_repository_name
-        run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
 
       - name: Deploy to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
@@ -40,7 +34,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'dist'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
+          DEST_DIR: '${{ github.repository }}/${BRANCH_NAME}'
 
       - name: Deploy storybook to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
@@ -48,12 +42,12 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'storybook-static'
-          DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}/preview'
+          DEST_DIR: '${{ github.repository }}/${BRANCH_NAME}/preview'
 
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
           DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
-          SOURCE_DIR: '${{ steps.extract_repository_name.outputs.repository }}/${{ steps.extract_branch_name.outputs.branch }}'
+          SOURCE_DIR: '${{ sgithub.repository }}/${BRANCH_NAME}'
           AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
