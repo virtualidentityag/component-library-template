@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Cache npm dependencies
+      - name: Cache npm dependencies (text change to test caching)
         uses: actions/cache@v2
         with:
           path: ~/.npm
