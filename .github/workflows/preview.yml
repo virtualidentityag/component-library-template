@@ -27,7 +27,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Run npm install depending on cache-hit
+      - name: Run npm install (skipped if cache-hit exists)
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
