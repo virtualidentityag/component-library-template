@@ -1,6 +1,6 @@
 name: Release
 
-on: 
+on:
   push:
     branches:
       - master
@@ -21,8 +21,20 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v2.1.4
         with:
-          node-version: 12
-      - run: npm install
+          node-version: 14
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: ~./npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Run npm ci (skipped if cache-hit exists)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Get old package version
         uses: martinbeentjes/npm-get-version-action@v1.1.0
@@ -46,7 +58,7 @@ jobs:
         shell: bash
         id: extract-repository-name
         run: echo "##[set-output name=repository;]$(echo ${GITHUB_REPOSITORY#*/})"
-      
+
       - name: Deploy dist to frontend.live
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
@@ -62,7 +74,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
           SOURCE_DIR: 'storybook-static'
           DEST_DIR: '${{ steps.extract_repository_name.outputs.repository }}/releases/${{ steps.package-version-new.outputs.current-version}}/preview'
-      
+
       - name: Invalidate CDN cache
         uses: awact/cloudfront-action@0.1.2
         env:
