@@ -22,14 +22,12 @@ jobs:
         uses: actions/cache@v2
         id: cache
         with:
-          path: ./node_modules
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
-      - name: Run npm install (skipped if cache-hit exists)
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
+            
+      - run: npm ci
 
       - run: npm run build
 
