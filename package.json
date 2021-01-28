@@ -55,8 +55,8 @@
     "@types/puppeteer": "5.4.2",
     "commitlint-config-cz": "0.13.2",
     "cz-customizable": "6.3.0",
-    "faker": "5.1.0",
-    "fs-extra": "9.0.1",
+    "faker": "5.2.0",
+    "fs-extra": "9.1.0",
     "husky": "4.3.8",
     "inquirer": "7.3.3",
     "jest": "26.6.3",
@@ -101,6 +101,10 @@
           "preset": "angular",
           "releaseRules": [
             {
+              "breaking": true,
+              "release": "major"
+            },
+            {
               "type": "feat*",
               "release": "minor"
             },
@@ -112,7 +116,13 @@
               "type": "perf*",
               "release": "patch"
             }
-          ]
+          ],
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES"
+            ]
+          }
         }
       ],
       "@semantic-release/release-notes-generator",
