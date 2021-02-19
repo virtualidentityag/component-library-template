@@ -50,7 +50,7 @@
     "@storybook/cli": "~6.1",
     "@storybook/html": "~6.1",
     "@storybook/theming": "~6.1",
-    "@types/faker": "5.1.6",
+    "@types/faker": "5.1.7",
     "@types/jest": "26.0.20",
     "@types/puppeteer": "5.4.3",
     "commitlint-config-cz": "0.13.2",
