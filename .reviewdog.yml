@@ -1,0 +1,5 @@
+runner:
+  eslint:
+    cmd: npm run lint:code
+  stylelint:
+    cmd: npm run lint:style

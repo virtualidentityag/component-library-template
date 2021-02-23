@@ -1,0 +1,51 @@
+name: Qualitygate
+on: 
+  pull_request:
+
+
+jobs:
+  qualitygate:
+    if: github.event_name == 'pull_request'
+    name: Qualitygate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Node Setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run eslint, styelint
+        run: npm install
+
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+          
+      - name: Run eslint, styelint
+        continue-on-error: true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ github.token }}
+        run: |
+          reviewdog -reporter=github-pr-check -runners=eslint,stylelint -fail-on-error
+
+      - name: yamllint
+        uses: reviewdog/action-yamllint@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-check
+
+      - name: alex
+        uses: reviewdog/action-alex@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-check
+          level: warning
+
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          github_token: ${{ github.token }}
+          reporter: github-pr-check
