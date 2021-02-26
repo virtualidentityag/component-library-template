@@ -67,7 +67,7 @@
     "package-name-regex": "^1.0.9",
     "puppeteer": "5.5.0",
     "replace": "1.2.0",
-    "semantic-release": "17.3.9",
+    "semantic-release": "17.4.0",
     "ts-loader": "8.0.17",
     "typescript": "4.1.5"
   },
