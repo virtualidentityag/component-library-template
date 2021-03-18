@@ -32,7 +32,7 @@
     "release": "semantic-release"
   },
   "devDependencies": {
-    "@biotope/quality-gate": "2.0.0-rc.4",
+    "@biotope/quality-gate": "2.0.0-rc.5",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/git": "9.0.0",
     "@stencil/core": "~2.4.0",
