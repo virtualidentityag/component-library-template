@@ -39,6 +39,11 @@ export const config: Config = {
     shadowDomShim: true,
   },
   plugins: [
-    sass({ importer: nodeSassPackageImporter() }),
+    sass({ 
+      importer: nodeSassPackageImporter(),
+      injectGlobalPaths: [
+        'src/global/app.scss',
+      ],
+    }),
   ],
 };
