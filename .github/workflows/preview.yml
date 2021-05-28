@@ -19,7 +19,7 @@ jobs:
           node-version: 14
 
       - name: Cache npm dependencies
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         id: cache
         with:
           path: ~/.npm
